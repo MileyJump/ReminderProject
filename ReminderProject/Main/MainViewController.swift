@@ -20,6 +20,8 @@ class MainViewController: BaseViewController {
     }
     
     override func configureView() {
+        mainView.collectionView.delegate = self
+        mainView.collectionView.dataSource = self
         mainView.collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.id)
     }
     
@@ -28,13 +30,15 @@ class MainViewController: BaseViewController {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        return TodoType.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.id, for: indexPath) as? MainCollectionViewCell else {
             fatalError("MainCollectionViewCell 데이터가 없습니다.")
         }
+        let todoCase = TodoType.allCases[indexPath.row]
+        cell.configureCell(todoCase)
         
         return cell
     }

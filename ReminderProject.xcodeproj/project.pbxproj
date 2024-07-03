@@ -26,6 +26,7 @@
 		B08F10F22C35837A003B4009 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10F12C35837A003B4009 /* Resource.swift */; };
 		B08F10F42C358770003B4009 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10F32C35876F003B4009 /* MainCollectionViewCell.swift */; };
 		B08F10F62C35881A003B4009 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10F52C35881A003B4009 /* BaseCollectionViewCell.swift */; };
+		B08F10F82C35897C003B4009 /* TodoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10F72C35897C003B4009 /* TodoType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		B08F10F12C35837A003B4009 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		B08F10F32C35876F003B4009 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		B08F10F52C35881A003B4009 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		B08F10F72C35897C003B4009 /* TodoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				B08F10F12C35837A003B4009 /* Resource.swift */,
+				B08F10F72C35897C003B4009 /* TodoType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B08F10E02C342306003B4009 /* Resuable.swift in Sources */,
+				B08F10F82C35897C003B4009 /* TodoType.swift in Sources */,
 				B08F10EF2C35808B003B4009 /* MainView.swift in Sources */,
 				B08F10ED2C357F78003B4009 /* MainViewController.swift in Sources */,
 				B08F10DC2C3420DE003B4009 /* BaseTableViewCell.swift in Sources */,
