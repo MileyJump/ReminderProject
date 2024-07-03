@@ -27,22 +27,24 @@ class CreateViewController: BaseViewController {
         createView.todoTableView.delegate = self
         createView.todoTableView.dataSource = self 
         createView.todoTableView.register(TodoListTableViewCell.self, forCellReuseIdentifier: TodoListTableViewCell.id)
+        createView.todoTableView.register(CreateContentTableViewCell.self, forCellReuseIdentifier: CreateContentTableViewCell.id)
     }
     
 }
 
 extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Resource.Todo.allCases.count
+//        Resource.Todo.allCases.count
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.id, for: indexPath) as? TodoListTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateContentTableViewCell.id, for: indexPath) as? CreateContentTableViewCell else {
             fatalError("TodoListTableViewCell 데이터가 없습니다.")
         }
         
-        let todoCase = Resource.Todo.allCases[indexPath.row]
-        cell.titleLabel.text = todoCase.rawValue
+//        let todoCase = Resource.Todo.allCases[indexPath.row]
+//        cell.titleLabel.text = todoCase.rawValue
         return cell
     }
     

@@ -23,8 +23,15 @@ class MainViewController: BaseViewController {
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
         mainView.collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.id)
+        
+        mainView.addTodoButton.addTarget(self, action: #selector(addTodoButtonTapped), for: .touchUpInside)
     }
     
+    @objc func addTodoButtonTapped() {
+        print(#function)
+        let vc = CreateViewController()
+        present(vc, animated: true)
+    }
     
 }
 
