@@ -10,12 +10,6 @@ import UIKit
 class CreateViewController: BaseViewController {
     
     
-    enum Todo: String, CaseIterable {
-        case deadline = "마감일"
-        case tag = "태그"
-        case priority = "우선 순위"
-        case addImage = "이미지 추가"
-    }
     
     
     let createView = CreateView()
@@ -39,7 +33,7 @@ class CreateViewController: BaseViewController {
 
 extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Todo.allCases.count
+        Resource.Todo.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,7 +41,7 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("TodoListTableViewCell 데이터가 없습니다.")
         }
         
-        let todoCase = Todo.allCases[indexPath.row]
+        let todoCase = Resource.Todo.allCases[indexPath.row]
         cell.titleLabel.text = todoCase.rawValue
         return cell
     }

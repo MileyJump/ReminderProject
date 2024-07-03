@@ -26,7 +26,6 @@ class BaseView: UIView {
     }
     
     func configureView() {
-        backgroundColor = .black
         print(#function)
     }
     
