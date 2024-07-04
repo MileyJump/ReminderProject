@@ -20,6 +20,7 @@ class CreateViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
  
     
@@ -28,6 +29,8 @@ class CreateViewController: BaseViewController {
         createView.todoTableView.dataSource = self 
         createView.todoTableView.register(TodoListTableViewCell.self, forCellReuseIdentifier: TodoListTableViewCell.id)
         createView.todoTableView.register(CreateContentTableViewCell.self, forCellReuseIdentifier: CreateContentTableViewCell.id)
+         createView.todoTableView.estimatedRowHeight = 44.0
+             createView.todoTableView.rowHeight = UITableView.automaticDimension
     }
     
 }
@@ -47,6 +50,7 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
 //        cell.titleLabel.text = todoCase.rawValue
         return cell
     }
+    
     
     
     

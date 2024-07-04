@@ -70,5 +70,6 @@ class CreateView: BaseView {
 //        titleTextField.placeholder = "제목"
         
         todoTableView.layer.cornerRadius = 10
+        todoTableView.separatorStyle = .none
     }
 }

@@ -42,6 +42,7 @@ class CreateContentTableViewCell: BaseTableViewCell {
             make.top.equalTo(lineView.snp.bottom).offset(4)
             make.horizontalEdges.equalTo(titleTextField)
             make.bottom.equalTo(backGroundView.snp.bottom).inset(8)
+            make.height.equalTo(95)
         }
     }
     
