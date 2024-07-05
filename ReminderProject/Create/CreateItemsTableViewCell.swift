@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-class TodoListTableViewCell: BaseTableViewCell {
+final class TodoListTableViewCell: BaseTableViewCell {
     
-    let bgView = UIView()
-    let titleLabel = UILabel()
-    let chevronImage = UIImageView()
+    private let bgView = UIView()
+    private let titleLabel = UILabel()
+    private let chevronImage = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

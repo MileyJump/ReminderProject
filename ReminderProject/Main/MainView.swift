@@ -13,7 +13,7 @@ final class MainView: BaseView {
         let label = UILabel()
         label.text = "전체"
         label.font = .boldSystemFont(ofSize: 30)
-        label.textColor = .lightGray
+        label.textColor = .systemGray2
         return label
     }()
     
@@ -61,13 +61,10 @@ final class MainView: BaseView {
         addSubview(collectionView)
     }
     
-    override func configureView() {
-        
-    }
-    
     override func configureLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.leading.top.equalTo(safeAreaLayoutGuide).inset(5)
+            make.top.equalTo(safeAreaLayoutGuide).inset(5)
+            make.leading.equalTo(safeAreaLayoutGuide).inset(16)
         }
         
         addTodoButton.snp.makeConstraints { make in

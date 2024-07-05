@@ -7,12 +7,9 @@
 
 import UIKit
 
-class CreateViewController: BaseViewController {
-    
-    
-    
-    
-    let createView = CreateView()
+final class CreateViewController: BaseViewController {
+
+    private let createView = CreateView()
     
     override func loadView() {
         view = createView
@@ -23,7 +20,7 @@ class CreateViewController: BaseViewController {
         setupNavigationBar()
     }
     
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         navigationItem.title = "새로운 할 일"
         
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonTapped))
@@ -34,11 +31,11 @@ class CreateViewController: BaseViewController {
         saveButton.isEnabled = false // 초기 상태에서 비활성화
     }
     
-    @objc func saveButtonTapped() {
+    @objc private func saveButtonTapped() {
         
     }
     
-    @objc func cancelButtonTapped() {
+    @objc private func cancelButtonTapped() {
         dismiss(animated: true)
     }
  

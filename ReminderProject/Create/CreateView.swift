@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CreateView: BaseView {
+final class CreateView: BaseView {
     
     let todoTableView = UITableView()
     

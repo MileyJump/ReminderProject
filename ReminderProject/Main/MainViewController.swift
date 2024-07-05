@@ -7,9 +7,9 @@
 
 import UIKit
 
-class MainViewController: BaseViewController {
+final class MainViewController: BaseViewController {
     
-    let mainView = MainView()
+    private let mainView = MainView()
     
     override func loadView() {
         view = mainView
@@ -20,19 +20,27 @@ class MainViewController: BaseViewController {
     }
     
     override func configureView() {
+        navigationItem.backButtonTitle = ""
+        
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
         mainView.collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.id)
         
         mainView.addTodoButton.addTarget(self, action: #selector(addTodoButtonTapped), for: .touchUpInside)
+        mainView.addListButton.addTarget(self, action: #selector(addListButtonTapped), for: .touchUpInside)
     }
     
-    @objc func addTodoButtonTapped() {
+    @objc private func addTodoButtonTapped() {
         print(#function)
         let vc = CreateViewController()
         let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.modalPresentationStyle = .automatic
         present(navigationController, animated: true, completion: nil)
+    }
+    
+    @objc private func addListButtonTapped() {
+        print(#function)
+        let vc = ListViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

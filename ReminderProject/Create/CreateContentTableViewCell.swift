@@ -8,9 +8,10 @@
 import UIKit
 import SnapKit
 
-class CreateContentTableViewCell: BaseTableViewCell {
+final class CreateContentTableViewCell: BaseTableViewCell {
+    
     private let bgView = UIView()
-    let titleTextField = UITextField()
+    private let titleTextField = UITextField()
     private let lineView = UIView()
     let memoTextView = UITextView()
     

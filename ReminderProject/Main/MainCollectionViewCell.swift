@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainCollectionViewCell: BaseCollectionViewCell {
+final class MainCollectionViewCell: BaseCollectionViewCell {
     
     private let iconImageView = UIImageView()
     private let titleLabel = UILabel()

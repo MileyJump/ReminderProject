@@ -27,7 +27,6 @@ class BaseView: UIView {
     
     func configureView() {
         print(#function)
-        backgroundColor = .blue
     }
     
     func configureLayout() {
