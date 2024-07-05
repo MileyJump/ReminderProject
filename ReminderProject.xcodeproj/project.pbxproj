@@ -37,6 +37,7 @@
 		B08F111E2C38279A003B4009 /* DeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F111D2C38279A003B4009 /* DeadlineView.swift */; };
 		B08F11202C383600003B4009 /* DeadlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F111F2C383600003B4009 /* DeadlineViewController.swift */; };
 		B08F11242C3839FB003B4009 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11232C3839FB003B4009 /* TagView.swift */; };
+		B08F11262C383B47003B4009 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11252C383B47003B4009 /* TagViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +84,7 @@
 		B08F111D2C38279A003B4009 /* DeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineView.swift; sourceTree = "<group>"; };
 		B08F111F2C383600003B4009 /* DeadlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineViewController.swift; sourceTree = "<group>"; };
 		B08F11232C3839FB003B4009 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		B08F11252C383B47003B4009 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				B08F11232C3839FB003B4009 /* TagView.swift */,
+				B08F11252C383B47003B4009 /* TagViewController.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				B08F10DA2C341E18003B4009 /* CreateViewController.swift in Sources */,
 				B08F111E2C38279A003B4009 /* DeadlineView.swift in Sources */,
 				B08F10F42C358770003B4009 /* MainCollectionViewCell.swift in Sources */,
+				B08F11262C383B47003B4009 /* TagViewController.swift in Sources */,
 				B08F10F22C35837A003B4009 /* Resource.swift in Sources */,
 				B08F10D22C341B64003B4009 /* BaseView.swift in Sources */,
 				B08F10BB2C341B1C003B4009 /* AppDelegate.swift in Sources */,

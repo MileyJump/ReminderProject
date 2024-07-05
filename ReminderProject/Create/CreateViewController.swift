@@ -131,11 +131,11 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
         print("동작이 돼요?")
         switch addType {
         case .deadline :
-            print("야호")
             let vc = DeadlineViewController()
             present(vc, animated: true)
         case .tag:
-            print("ㅇㅇ")
+            let vc = TagViewController()
+            present(vc, animated: true)
         case .priority:
             print("ㅁㅇㄴㄹ")
         case .addImage:

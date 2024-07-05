@@ -19,7 +19,7 @@ final class DeadlineView: BaseView {
     override func configureLayout() {
         datePicker.snp.makeConstraints { make in
             make.centerX.equalTo(safeAreaLayoutGuide)
-            make.centerY.equalTo(safeAreaLayoutGuide).offset(-50)
+            make.top.equalTo(safeAreaLayoutGuide).offset(100)
         }
     }
     
