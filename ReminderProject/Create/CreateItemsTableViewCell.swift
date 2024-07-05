@@ -9,42 +9,52 @@ import UIKit
 import SnapKit
 
 class TodoListTableViewCell: BaseTableViewCell {
-  
-   
+    
+    let bgView = UIView()
     let titleLabel = UILabel()
-    let arrowImage = {
-        let image = UIImageView()
-        image.image = UIImage(systemName: "chevron.right")
-        return image
-    }()
+    let chevronImage = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     override func configureHierarchy() {
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(arrowImage)
+        contentView.addSubview(bgView)
+        bgView.addSubview(titleLabel)
+        bgView.addSubview(chevronImage)
+    }
+    
+    func configureCell(_ data: AddType ) {
+        titleLabel.text = data.rawValue
     }
     
     override func configureLayout() {
-        titleLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(contentView)
-            make.leading.equalTo(contentView.snp.leading).offset(10)
+        bgView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(50)
+            make.verticalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(8)
         }
         
-        arrowImage.snp.makeConstraints { make in
-            make.centerY.equalTo(contentView)
-            make.trailing.equalTo(contentView.snp.trailing).inset(10)
+        titleLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(bgView)
+            make.leading.equalTo(bgView.snp.leading).offset(10)
+        }
+        
+        chevronImage.snp.makeConstraints { make in
+            make.centerY.equalTo(bgView)
+            make.trailing.equalTo(bgView.snp.trailing).inset(10)
             make.height.equalTo(20)
         }
     }
     
     override func configureView() {
-        arrowImage.backgroundColor = .clear
-        arrowImage.tintColor = .lightGray
+        bgView.backgroundColor = .systemGray5
+        bgView.layer.cornerRadius = 10
         
-        self.backgroundColor = .darkGray
+        chevronImage.image = UIImage(systemName: Resource.ImageCase.chevronImage.rawValue)
+        chevronImage.tintColor = .systemGray2
+        
+        titleLabel.font = .systemFont(ofSize: 13)
     }
     
 }

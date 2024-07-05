@@ -8,14 +8,7 @@
 import UIKit
 
 enum Resource {
-    
-    enum Todo: String, CaseIterable {
-        case deadline = "마감일"
-        case tag = "태그"
-        case priority = "우선 순위"
-        case addImage = "이미지 추가"
-    }
-    
+   
     enum placeholder: String {
         case title = "제목"
         case memo = "메모"

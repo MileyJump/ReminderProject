@@ -30,7 +30,9 @@ class MainViewController: BaseViewController {
     @objc func addTodoButtonTapped() {
         print(#function)
         let vc = CreateViewController()
-        present(vc, animated: true)
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .automatic
+        present(navigationController, animated: true, completion: nil)
     }
     
 }

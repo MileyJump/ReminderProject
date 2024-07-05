@@ -7,6 +7,14 @@
 
 import UIKit
 
+enum AddType: String, CaseIterable {
+    case deadline = "마감일"
+    case tag = "태그"
+    case priority = "우선 순위"
+    case addImage = "이미지 추가"
+}
+
+
 enum TodoType: String, CaseIterable {
     case today
     case schedule
