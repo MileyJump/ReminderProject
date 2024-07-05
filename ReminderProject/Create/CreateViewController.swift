@@ -43,10 +43,7 @@ final class CreateViewController: BaseViewController {
         print(#function)
         
         let data = TodoTable(todoTitle: todoTitle, todoMemo: todoMemo, todoDate: nil, todoPriority: nil, todoTag: nil, todoImage: nil)
-        
         repository.createItem(data)
-        
-        
     }
     
     @objc private func cancelButtonTapped() {
@@ -121,9 +118,31 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             itemCell.configureCell(data)
             return itemCell
         }
-        
-        
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.row == 0 {
+            return
+        }
+        
+        let addType = AddType.allCases[indexPath.row - 1]
+        print("동작이 돼요?")
+        switch addType {
+        case .deadline :
+            print("야호")
+            let vc = DeadlineViewController()
+            present(vc, animated: true)
+        case .tag:
+            print("ㅇㅇ")
+        case .priority:
+            print("ㅁㅇㄴㄹ")
+        case .addImage:
+            print("ㅁㅎㅇㄴ")
+        }
+    }
+    
 }
 
 

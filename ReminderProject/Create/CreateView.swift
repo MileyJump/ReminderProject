@@ -28,6 +28,7 @@ final class CreateView: BaseView {
     }
     
     override func configureView() {
+        backgroundColor = .systemBackground
         todoTableView.layer.cornerRadius = 10
         todoTableView.separatorStyle = .none
     }

@@ -54,6 +54,7 @@ final class MainView: BaseView {
         super.init(frame: frame)
     }
     
+    
     override func configureHierarchy() {
         addSubview(titleLabel)
         addSubview(addTodoButton)

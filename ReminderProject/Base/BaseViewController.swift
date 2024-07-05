@@ -22,7 +22,7 @@ class BaseViewController: UIViewController {
     }
     
     func configureView() {
-        print(#function)
+        print("BaseVC",#function)
         view.backgroundColor = .black
     }
     
