@@ -11,7 +11,7 @@ import SnapKit
 final class CreateContentTableViewCell: BaseTableViewCell {
     
     private let bgView = UIView()
-    private let titleTextField = UITextField()
+    let titleTextField = UITextField()
     private let lineView = UIView()
     let memoTextView = UITextView()
     

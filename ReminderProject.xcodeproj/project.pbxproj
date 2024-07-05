@@ -16,7 +16,6 @@
 		B08F10CF2C341B31003B4009 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10CE2C341B31003B4009 /* BaseViewController.swift */; };
 		B08F10D22C341B64003B4009 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10D12C341B64003B4009 /* BaseView.swift */; };
 		B08F10D52C341C4E003B4009 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10D42C341C4E003B4009 /* CreateView.swift */; };
-		B08F10D82C341D7D003B4009 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B08F10D72C341D7D003B4009 /* SnapKit */; };
 		B08F10DA2C341E18003B4009 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10D92C341E18003B4009 /* CreateViewController.swift */; };
 		B08F10DC2C3420DE003B4009 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10DB2C3420DE003B4009 /* BaseTableViewCell.swift */; };
 		B08F10DE2C34211A003B4009 /* CreateItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10DD2C34211A003B4009 /* CreateItemsTableViewCell.swift */; };
@@ -31,7 +30,24 @@
 		B08F11052C37C249003B4009 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11042C37C249003B4009 /* ListView.swift */; };
 		B08F11072C37C69E003B4009 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11062C37C69E003B4009 /* ListViewController.swift */; };
 		B08F11092C37C6E7003B4009 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11082C37C6E7003B4009 /* ListTableViewCell.swift */; };
+		B08F11112C37EED0003B4009 /* TodoTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11102C37EED0003B4009 /* TodoTable.swift */; };
+		B08F11132C381406003B4009 /* TodoTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11122C381406003B4009 /* TodoTableRepository.swift */; };
+		B08F11182C38175D003B4009 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B08F11172C38175D003B4009 /* RealmSwift */; };
+		B08F111B2C38179F003B4009 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B08F111A2C38179F003B4009 /* SnapKit */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B08F11152C3816CB003B4009 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B08F10B72C341B1C003B4009 /* ReminderProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +75,8 @@
 		B08F11042C37C249003B4009 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		B08F11062C37C69E003B4009 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		B08F11082C37C6E7003B4009 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		B08F11102C37EED0003B4009 /* TodoTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTable.swift; sourceTree = "<group>"; };
+		B08F11122C381406003B4009 /* TodoTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B08F10D82C341D7D003B4009 /* SnapKit in Frameworks */,
+				B08F11182C38175D003B4009 /* RealmSwift in Frameworks */,
+				B08F111B2C38179F003B4009 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +111,7 @@
 		B08F10B92C341B1C003B4009 /* ReminderProject */ = {
 			isa = PBXGroup;
 			children = (
+				B08F110A2C37D0BA003B4009 /* DataBase */,
 				B08F10EB2C357F70003B4009 /* Main */,
 				B08F10D32C341C36003B4009 /* Create */,
 				B08F11022C37C13B003B4009 /* List */,
@@ -168,6 +188,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		B08F110A2C37D0BA003B4009 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				B08F11102C37EED0003B4009 /* TodoTable.swift */,
+				B08F11122C381406003B4009 /* TodoTableRepository.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,6 +207,7 @@
 				B08F10B32C341B1C003B4009 /* Sources */,
 				B08F10B42C341B1C003B4009 /* Frameworks */,
 				B08F10B52C341B1C003B4009 /* Resources */,
+				B08F11152C3816CB003B4009 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,7 +215,8 @@
 			);
 			name = ReminderProject;
 			packageProductDependencies = (
-				B08F10D72C341D7D003B4009 /* SnapKit */,
+				B08F11172C38175D003B4009 /* RealmSwift */,
+				B08F111A2C38179F003B4009 /* SnapKit */,
 			);
 			productName = ReminderProject;
 			productReference = B08F10B72C341B1C003B4009 /* ReminderProject.app */;
@@ -216,7 +247,8 @@
 			);
 			mainGroup = B08F10AE2C341B1C003B4009;
 			packageReferences = (
-				B08F10D62C341D7D003B4009 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				B08F11162C38175D003B4009 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				B08F11192C38179F003B4009 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = B08F10B82C341B1C003B4009 /* Products */;
 			projectDirPath = "";
@@ -263,7 +295,9 @@
 				B08F10D22C341B64003B4009 /* BaseView.swift in Sources */,
 				B08F10BB2C341B1C003B4009 /* AppDelegate.swift in Sources */,
 				B08F10D52C341C4E003B4009 /* CreateView.swift in Sources */,
+				B08F11112C37EED0003B4009 /* TodoTable.swift in Sources */,
 				B08F10BD2C341B1C003B4009 /* SceneDelegate.swift in Sources */,
+				B08F11132C381406003B4009 /* TodoTableRepository.swift in Sources */,
 				B08F10DE2C34211A003B4009 /* CreateItemsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,9 +464,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.miley.ReminderProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -457,9 +495,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.miley.ReminderProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -487,7 +529,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B08F10D62C341D7D003B4009 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		B08F11162C38175D003B4009 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B08F11192C38179F003B4009 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -498,9 +548,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B08F10D72C341D7D003B4009 /* SnapKit */ = {
+		B08F11172C38175D003B4009 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B08F10D62C341D7D003B4009 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = B08F11162C38175D003B4009 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		B08F111A2C38179F003B4009 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B08F11192C38179F003B4009 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

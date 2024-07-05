@@ -11,6 +11,8 @@ final class ListViewController: BaseViewController {
     
     private let listView = ListView()
     
+    
+    
     override func loadView() {
         view = listView
     }

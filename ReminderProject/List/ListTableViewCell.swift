@@ -53,6 +53,7 @@ final class ListTableViewCell: BaseTableViewCell {
     
     override func configureView() {
         checkImage.image = UIImage(systemName: Resource.ImageCase.unCheckImage.rawValue)
+        checkImage.tintColor = .systemGray2
         
         memoLabel.numberOfLines = 0
         memoLabel.font = .systemFont(ofSize: 13)

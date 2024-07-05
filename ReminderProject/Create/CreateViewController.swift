@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class CreateViewController: BaseViewController {
 
     private let createView = CreateView()
+    private let repository = TodoTableRepository()
+    var todoTitle: String = ""
+    var todoMemo: String = ""
+//    private var todoList: [TodoTable] = []
+    let realm = try! Realm()
     
     override func loadView() {
         view = createView
@@ -18,6 +24,8 @@ final class CreateViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        print(realm.configuration.fileURL)
+  
     }
     
     private func setupNavigationBar() {
@@ -32,6 +40,12 @@ final class CreateViewController: BaseViewController {
     }
     
     @objc private func saveButtonTapped() {
+        print(#function)
+        
+        let data = TodoTable(todoTitle: todoTitle, todoMemo: todoMemo, todoDate: nil, todoPriority: nil, todoTag: nil, todoImage: nil)
+        
+        repository.createItem(data)
+        
         
     }
     
@@ -48,8 +62,41 @@ final class CreateViewController: BaseViewController {
         createView.todoTableView.estimatedRowHeight = 44.0
         createView.todoTableView.rowHeight = UITableView.automaticDimension
     }
+}
+
+extension CreateViewController: UITextFieldDelegate {
     
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if let text = textField.text {
+            todoTitle = text
+            if !text.isEmpty {
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+        }
+    }
+}
+
+extension CreateViewController: UITextViewDelegate {
     
+    func textViewDidChange(_ textView: UITextView) {
+        todoMemo = textView.text
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == Resource.placeholder.memo.rawValue && textView.textColor == UIColor.systemGray2 {
+            textView.text = ""
+            textView.textColor = .white
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = Resource.placeholder.memo.rawValue
+            textView.textColor = .systemGray2
+        }
+    }
 }
 
 extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
@@ -62,6 +109,9 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             guard let contentCell = tableView.dequeueReusableCell(withIdentifier: CreateContentTableViewCell.id, for: indexPath) as? CreateContentTableViewCell else {
                 fatalError("CreateContentTableViewCell 데이터가 없습니다.")
             }
+            contentCell.titleTextField.delegate = self
+            contentCell.memoTextView.delegate = self
+            
             return contentCell
         } else {
             guard let itemCell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.id, for: indexPath) as? TodoListTableViewCell else {
@@ -71,6 +121,8 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             itemCell.configureCell(data)
             return itemCell
         }
+        
+        
     }
 }
 
