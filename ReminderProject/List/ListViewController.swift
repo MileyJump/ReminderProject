@@ -10,7 +10,8 @@ import UIKit
 final class ListViewController: BaseViewController {
     
     private let listView = ListView()
-    
+    private let repository = TodoTableRepository()
+    private var todoList: [TodoTable] = []
     
     
     override func loadView() {
@@ -20,6 +21,8 @@ final class ListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        
+        todoList = repository.fetchAll()
     }
     
     override func configureView() {
@@ -43,7 +46,7 @@ final class ListViewController: BaseViewController {
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return todoList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,8 +54,22 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError( "ListTableViewCell 데이터가 없어요")
         }
         
+        cell.configureCell(todoList[indexPath.row])
+        
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let data = todoList[indexPath.row]
+        
+        if editingStyle == .delete {
+            
+            todoList = repository.fetchAll()
+            repository.deleteItem(data)
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
     
 }

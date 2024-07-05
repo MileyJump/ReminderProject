@@ -31,4 +31,14 @@ final class TodoTableRepository {
         }
     }
     
+    func deleteItem(_ data: TodoTable) {
+        do {
+            try realm.write {
+                realm.delete(data)
+                print("Realm Delete Succeed")
+            }
+        } catch {
+            print("Realm Error")
+        }
+    }
 }

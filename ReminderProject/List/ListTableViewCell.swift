@@ -18,6 +18,12 @@ final class ListTableViewCell: BaseTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
+    func configureCell(_ data: TodoTable) {
+        titleLabel.text = data.todoTitle
+        memoLabel.text = data.todoMemo
+        tagLabel.text = data.todoTag
+    }
+    
     override func configureHierarchy() {
         contentView.addSubview(checkImage)
         contentView.addSubview(titleLabel)
