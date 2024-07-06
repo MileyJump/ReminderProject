@@ -151,9 +151,13 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             let nav = UINavigationController(rootViewController: vc)
             present(nav, animated: true)
         case .priority:
-            print("ㅁㅇㄴㄹ")
+            let vc = PriorityViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            present(nav, animated: true)
         case .addImage:
-            print("ㅁㅎㅇㄴ")
+            let vc = AddImageViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            present(nav, animated: true)
         }
     }
     

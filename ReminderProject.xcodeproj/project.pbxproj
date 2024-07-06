@@ -39,6 +39,10 @@
 		B08F11242C3839FB003B4009 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11232C3839FB003B4009 /* TagView.swift */; };
 		B08F11262C383B47003B4009 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11252C383B47003B4009 /* TagViewController.swift */; };
 		B08F11282C3920BD003B4009 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11272C3920BD003B4009 /* Notification.swift */; };
+		B08F112C2C393DDA003B4009 /* PriorityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F112B2C393DDA003B4009 /* PriorityView.swift */; };
+		B08F112E2C393FDD003B4009 /* PiriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F112D2C393FDD003B4009 /* PiriorityViewController.swift */; };
+		B08F11302C394281003B4009 /* addImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F112F2C394281003B4009 /* addImageView.swift */; };
+		B08F11322C394446003B4009 /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11312C394446003B4009 /* AddImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +91,10 @@
 		B08F11232C3839FB003B4009 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		B08F11252C383B47003B4009 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		B08F11272C3920BD003B4009 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		B08F112B2C393DDA003B4009 /* PriorityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityView.swift; sourceTree = "<group>"; };
+		B08F112D2C393FDD003B4009 /* PiriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiriorityViewController.swift; sourceTree = "<group>"; };
+		B08F112F2C394281003B4009 /* addImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addImageView.swift; sourceTree = "<group>"; };
+		B08F11312C394446003B4009 /* AddImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,8 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				B08F111C2C38275E003B4009 /* CreateDetail */,
-				B08F10D42C341C4E003B4009 /* CreateView.swift */,
 				B08F10D92C341E18003B4009 /* CreateViewController.swift */,
+				B08F10D42C341C4E003B4009 /* CreateView.swift */,
 				B08F10DD2C34211A003B4009 /* CreateItemsTableViewCell.swift */,
 				B08F10F92C358E25003B4009 /* CreateContentTableViewCell.swift */,
 			);
@@ -214,6 +222,8 @@
 			children = (
 				B08F11212C3839D1003B4009 /* Deadline */,
 				B08F11222C3839E5003B4009 /* Tag */,
+				B08F11292C393D95003B4009 /* Priority */,
+				B08F112A2C393DC1003B4009 /* addImage */,
 			);
 			path = CreateDetail;
 			sourceTree = "<group>";
@@ -234,6 +244,24 @@
 				B08F11252C383B47003B4009 /* TagViewController.swift */,
 			);
 			path = Tag;
+			sourceTree = "<group>";
+		};
+		B08F11292C393D95003B4009 /* Priority */ = {
+			isa = PBXGroup;
+			children = (
+				B08F112B2C393DDA003B4009 /* PriorityView.swift */,
+				B08F112D2C393FDD003B4009 /* PiriorityViewController.swift */,
+			);
+			path = Priority;
+			sourceTree = "<group>";
+		};
+		B08F112A2C393DC1003B4009 /* addImage */ = {
+			isa = PBXGroup;
+			children = (
+				B08F112F2C394281003B4009 /* addImageView.swift */,
+				B08F11312C394446003B4009 /* AddImageViewController.swift */,
+			);
+			path = addImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,7 +346,9 @@
 			files = (
 				B08F10E02C342306003B4009 /* Resuable.swift in Sources */,
 				B08F10F82C35897C003B4009 /* TodoType.swift in Sources */,
+				B08F112C2C393DDA003B4009 /* PriorityView.swift in Sources */,
 				B08F10FA2C358E25003B4009 /* CreateContentTableViewCell.swift in Sources */,
+				B08F11322C394446003B4009 /* AddImageViewController.swift in Sources */,
 				B08F10EF2C35808B003B4009 /* MainView.swift in Sources */,
 				B08F11202C383600003B4009 /* DeadlineViewController.swift in Sources */,
 				B08F10ED2C357F78003B4009 /* MainViewController.swift in Sources */,
@@ -333,6 +363,7 @@
 				B08F10DA2C341E18003B4009 /* CreateViewController.swift in Sources */,
 				B08F111E2C38279A003B4009 /* DeadlineView.swift in Sources */,
 				B08F10F42C358770003B4009 /* MainCollectionViewCell.swift in Sources */,
+				B08F11302C394281003B4009 /* addImageView.swift in Sources */,
 				B08F11262C383B47003B4009 /* TagViewController.swift in Sources */,
 				B08F10F22C35837A003B4009 /* Resource.swift in Sources */,
 				B08F10D22C341B64003B4009 /* BaseView.swift in Sources */,
@@ -343,6 +374,7 @@
 				B08F10BD2C341B1C003B4009 /* SceneDelegate.swift in Sources */,
 				B08F11132C381406003B4009 /* TodoTableRepository.swift in Sources */,
 				B08F10DE2C34211A003B4009 /* CreateItemsTableViewCell.swift in Sources */,
+				B08F112E2C393FDD003B4009 /* PiriorityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
