@@ -23,7 +23,10 @@ final class AddImageViewController: BaseViewController {
     }
     
     @objc func saveButtonTapped() {
-        
+        print("AddImageVC", #function)
+        let image = imageView.todoImageView.image
+        NotificationCenter.default.post(name: Notification.Name.todoImage, object: image)
+        dismiss(animated: true)
     }
     
     @objc func cancelButtonTapped() {

@@ -16,6 +16,7 @@ final class CreateViewController: BaseViewController {
     var todoMemo: String = ""
     var todoDate: Date?
     var todoTag: String = ""
+    var todoImage: UIImage?
     //    private var todoList: [TodoTable] = []
     let realm = try! Realm()
     
@@ -34,7 +35,12 @@ final class CreateViewController: BaseViewController {
         print(#function)
         let data = TodoTable(todoTitle: todoTitle, todoMemo: todoMemo, todoDate: todoDate, todoPriority: nil, todoTag: todoTag, todoImage: nil)
         repository.createItem(data)
-        dismiss(animated: true)
+        
+        if let image = todoImage {
+            saveImageToDocument(image: image, filename: "\(data.id)") // 아이디 값으로 이미지 저장
+        }
+        
+        
     }
     
     @objc private func cancelButtonTapped() {
@@ -45,20 +51,24 @@ final class CreateViewController: BaseViewController {
         print("노티피케이션")
         NotificationCenter.default.addObserver(self, selector: #selector(deadlineAction), name: Notification.Name.deadline, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(tagAction), name: Notification.Name.hashTag, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(imageAction), name: Notification.Name.todoImage, object: nil)
     }
     
     @objc func deadlineAction(_ notification: Notification) {
-        // userInfo에서 데이터 추출
-        print("날짜 저장 됐어요?")
         if let date = notification.object as? Date {
             todoDate = date
         }
     }
     
     @objc func tagAction(_ notification: Notification) {
-        print("태그 저장 됐어요?")
         if let tag = notification.object as? String {
             todoTag = tag
+        }
+    }
+    
+    @objc func imageAction(_ notification: Notification) {
+        if let image = notification.object as? UIImage {
+            todoImage = image
         }
     }
     

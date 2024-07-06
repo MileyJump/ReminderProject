@@ -10,4 +10,5 @@ import UIKit
 extension Notification.Name {
     static let deadline = Notification.Name("deadline")
     static let hashTag = Notification.Name("tag")
+    static let todoImage = Notification.Name("todoImage")
 }

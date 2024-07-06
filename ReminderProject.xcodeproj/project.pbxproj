@@ -41,8 +41,9 @@
 		B08F11282C3920BD003B4009 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11272C3920BD003B4009 /* Notification.swift */; };
 		B08F112C2C393DDA003B4009 /* PriorityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F112B2C393DDA003B4009 /* PriorityView.swift */; };
 		B08F112E2C393FDD003B4009 /* PiriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F112D2C393FDD003B4009 /* PiriorityViewController.swift */; };
-		B08F11302C394281003B4009 /* addImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F112F2C394281003B4009 /* addImageView.swift */; };
+		B08F11302C394281003B4009 /* AddImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F112F2C394281003B4009 /* AddImageView.swift */; };
 		B08F11322C394446003B4009 /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11312C394446003B4009 /* AddImageViewController.swift */; };
+		B08F11342C39671B003B4009 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F11332C39671B003B4009 /* FileManager+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -93,8 +94,9 @@
 		B08F11272C3920BD003B4009 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		B08F112B2C393DDA003B4009 /* PriorityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityView.swift; sourceTree = "<group>"; };
 		B08F112D2C393FDD003B4009 /* PiriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiriorityViewController.swift; sourceTree = "<group>"; };
-		B08F112F2C394281003B4009 /* addImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addImageView.swift; sourceTree = "<group>"; };
+		B08F112F2C394281003B4009 /* AddImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageView.swift; sourceTree = "<group>"; };
 		B08F11312C394446003B4009 /* AddImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
+		B08F11332C39671B003B4009 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 			children = (
 				B08F10DF2C342306003B4009 /* Resuable.swift */,
 				B08F11272C3920BD003B4009 /* Notification.swift */,
+				B08F11332C39671B003B4009 /* FileManager+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -258,7 +261,7 @@
 		B08F112A2C393DC1003B4009 /* addImage */ = {
 			isa = PBXGroup;
 			children = (
-				B08F112F2C394281003B4009 /* addImageView.swift */,
+				B08F112F2C394281003B4009 /* AddImageView.swift */,
 				B08F11312C394446003B4009 /* AddImageViewController.swift */,
 			);
 			path = addImage;
@@ -363,12 +366,13 @@
 				B08F10DA2C341E18003B4009 /* CreateViewController.swift in Sources */,
 				B08F111E2C38279A003B4009 /* DeadlineView.swift in Sources */,
 				B08F10F42C358770003B4009 /* MainCollectionViewCell.swift in Sources */,
-				B08F11302C394281003B4009 /* addImageView.swift in Sources */,
+				B08F11302C394281003B4009 /* AddImageView.swift in Sources */,
 				B08F11262C383B47003B4009 /* TagViewController.swift in Sources */,
 				B08F10F22C35837A003B4009 /* Resource.swift in Sources */,
 				B08F10D22C341B64003B4009 /* BaseView.swift in Sources */,
 				B08F11282C3920BD003B4009 /* Notification.swift in Sources */,
 				B08F10BB2C341B1C003B4009 /* AppDelegate.swift in Sources */,
+				B08F11342C39671B003B4009 /* FileManager+Extension.swift in Sources */,
 				B08F10D52C341C4E003B4009 /* CreateView.swift in Sources */,
 				B08F11112C37EED0003B4009 /* TodoTable.swift in Sources */,
 				B08F10BD2C341B1C003B4009 /* SceneDelegate.swift in Sources */,
