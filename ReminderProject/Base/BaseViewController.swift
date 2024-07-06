@@ -53,4 +53,18 @@ class BaseViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    func setupNavigationBar(title: String?, leftTitle: String?, rightTitle: String?, leftAction: Selector?, rightAction: Selector?) {
+        navigationItem.title = title
+        if let leftItemTitle = leftTitle {
+            let leftButton = UIBarButtonItem(title: leftItemTitle, style: .plain, target: self, action: leftAction)
+            navigationItem.leftBarButtonItem = leftButton
+        }
+        if let rightItemTitle = rightTitle {
+            let rightButton = UIBarButtonItem(title: rightItemTitle, style: .done, target: self, action: rightAction)
+            navigationItem.rightBarButtonItem = rightButton
+            rightButton.isEnabled = false // 초기 상태에서 비활성화
+        }
+        
+    }
+    
 }

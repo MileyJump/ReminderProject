@@ -17,6 +17,19 @@ final class DeadlineViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar(title: "마감일 등록", leftTitle: "취소", rightTitle: "저장", leftAction: #selector(cancelButtonTapped), rightAction: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem?.isEnabled = true
     }
+    
+    @objc func cancelButtonTapped() {
+        print(#function)
+        dismiss(animated: true)
+    }
+    
+    @objc func saveButtonTapped() {
+        print(#function)
+    }
+    
+    
 }
 

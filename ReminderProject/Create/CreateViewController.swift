@@ -23,20 +23,8 @@ final class CreateViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
         print(realm.configuration.fileURL)
-  
-    }
-    
-    private func setupNavigationBar() {
-        navigationItem.title = "새로운 할 일"
-        
-        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonTapped))
-        navigationItem.leftBarButtonItem = cancelButton
-        
-        let saveButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(saveButtonTapped))
-        navigationItem.rightBarButtonItem = saveButton
-        saveButton.isEnabled = false // 초기 상태에서 비활성화
+        setupNavigationBar(title: "새로운 할 일", leftTitle: "취소", rightTitle: "추가", leftAction: #selector(cancelButtonTapped), rightAction:  #selector(saveButtonTapped))
     }
     
     @objc private func saveButtonTapped() {
@@ -132,10 +120,12 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
         switch addType {
         case .deadline :
             let vc = DeadlineViewController()
-            present(vc, animated: true)
+            let nav = UINavigationController(rootViewController: vc)
+            present(nav, animated: true)
         case .tag:
             let vc = TagViewController()
-            present(vc, animated: true)
+            let nav = UINavigationController(rootViewController: vc)
+            present(nav, animated: true)
         case .priority:
             print("ㅁㅇㄴㄹ")
         case .addImage:
