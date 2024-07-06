@@ -42,8 +42,11 @@ final class ListViewController: BaseViewController {
         print(#function)
     }
     
-    func checkButtonTapped(_ sender: UIButton) {
-//        todoList[sender.tag].todoLike
+    @objc func checkButtonTapped(_ sender: UIButton) {
+        repository.updateItem {
+            todoList[sender.tag].todoLike.toggle()
+            listView.listTableView.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
+        }
     }
 }
 
@@ -58,7 +61,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError( "ListTableViewCell 데이터가 없어요")
         }
         cell.configureCell(todoList[indexPath.row])
-        
+        cell.checkButton.tag = indexPath.row
+        cell.checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
         return cell
     }
     
@@ -74,13 +78,5 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.id, for: indexPath) as? ListTableViewCell else {
-            fatalError( "ListTableViewCell 데이터가 없어요")
-        }
-        
-        cell.checkButtonToggle.toggle()
-    }
-    
+
 }

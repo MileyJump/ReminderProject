@@ -43,7 +43,6 @@ final class ListTableViewCell: BaseTableViewCell {
             switch priority {
             case Resource.prioritySegment.height.rawValue:
                 priorityLabel.text = "!!!"
-                print("어디가 실행되고 있는건가요")
             case Resource.prioritySegment.middle.rawValue:
                 priorityLabel.text = "!!"
             case Resource.prioritySegment.lowness.rawValue:
@@ -52,6 +51,16 @@ final class ListTableViewCell: BaseTableViewCell {
                 priorityLabel.text = ""
             }
         }
+    }
+    
+    // 셀이 재사용될 때 호출
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = ""
+        memoLabel.text = ""
+        tagLabel.text = ""
+        priorityLabel.text = ""
+        dateLabel.text = ""
     }
     
     func updateCheckButtonImage() {
@@ -114,7 +123,6 @@ final class ListTableViewCell: BaseTableViewCell {
     }
     
     override func configureView() {
-//        checkButton.setImage(UIImage(systemName: Resource.ImageCase.unCheckImage.rawValue), for: .normal)
         checkButton.tintColor = .systemGray2
         
         titleLabel.font = .systemFont(ofSize: 15)

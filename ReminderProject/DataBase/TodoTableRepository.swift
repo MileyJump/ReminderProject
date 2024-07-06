@@ -41,4 +41,14 @@ final class TodoTableRepository {
             print("Realm Error")
         }
     }
+    
+    func updateItem(_ completionHandler: () -> Void) {
+        do {
+            try realm.write {
+                completionHandler()
+            }
+        } catch {
+            print("Realm Update Failed")
+        }
+    }
 }
