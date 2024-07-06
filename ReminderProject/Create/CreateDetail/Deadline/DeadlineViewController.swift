@@ -28,8 +28,9 @@ final class DeadlineViewController: BaseViewController {
     
     @objc func saveButtonTapped() {
         print(#function)
+        let date = deadlineView.datePicker.date
+        NotificationCenter.default.post(name: Notification.Name.deadline, object: date)
+        dismiss(animated: true)
     }
-    
-    
 }
 

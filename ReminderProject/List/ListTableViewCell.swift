@@ -12,6 +12,7 @@ final class ListTableViewCell: BaseTableViewCell {
     private let checkImage = UIImageView()
     private let titleLabel = UILabel()
     private let memoLabel = UILabel()
+    private let dateLabel = UILabel()
     private let tagLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -21,14 +22,26 @@ final class ListTableViewCell: BaseTableViewCell {
     func configureCell(_ data: TodoTable) {
         titleLabel.text = data.todoTitle
         memoLabel.text = data.todoMemo
-        tagLabel.text = data.todoTag
+        if let todoDate = data.todoDate {
+            dateLabel.text = todoDataformatter(date: todoDate)
+        }
+        if let tag = data.todoTag {
+            tagLabel.text = "#\(tag)"
+        }
     }
     
     override func configureHierarchy() {
         contentView.addSubview(checkImage)
         contentView.addSubview(titleLabel)
         contentView.addSubview(memoLabel)
+        contentView.addSubview(dateLabel)
         contentView.addSubview(tagLabel)
+    }
+    
+    func todoDataformatter(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: date)
     }
     
     override func configureLayout() {
@@ -49,10 +62,16 @@ final class ListTableViewCell: BaseTableViewCell {
             make.horizontalEdges.equalTo(titleLabel)
         }
         
-        tagLabel.snp.makeConstraints { make in
+        dateLabel.snp.makeConstraints { make in
             make.top.equalTo(memoLabel.snp.bottom).offset(5)
             make.leading.equalTo(titleLabel)
             make.bottom.equalTo(contentView).inset(10)
+        }
+        
+        tagLabel.snp.makeConstraints { make in
+            make.top.equalTo(memoLabel.snp.bottom).offset(5)
+            make.leading.equalTo(dateLabel.snp.trailing).offset(2)
+            make.bottom.equalTo(dateLabel)
             
         }
     }
@@ -61,16 +80,19 @@ final class ListTableViewCell: BaseTableViewCell {
         checkImage.image = UIImage(systemName: Resource.ImageCase.unCheckImage.rawValue)
         checkImage.tintColor = .systemGray2
         
+        titleLabel.font = .systemFont(ofSize: 15)
+        titleLabel.textColor = .white
+        
         memoLabel.numberOfLines = 0
         memoLabel.font = .systemFont(ofSize: 13)
         memoLabel.textColor = .systemGray2
         
+        dateLabel.font = .systemFont(ofSize: 13)
+        dateLabel.textColor = .systemGray2
         tagLabel.font = .systemFont(ofSize: 13)
         tagLabel.textColor = .systemBlue
         
-        titleLabel.text = "안녕 반가워"
-        memoLabel.text = "와 너무 기쁘다 정말 반가워^^ 하하하하하핳 공부옥웁 메모메모 커밋커밋"
-        tagLabel.text = "#공부"
+//        tagLabel.text = "#공부"
         
     }
     

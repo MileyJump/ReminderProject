@@ -10,7 +10,7 @@ import SnapKit
 
 final class DeadlineView: BaseView {
     
-    private let datePicker = UIDatePicker()
+     let datePicker = UIDatePicker()
     
     override func configureHierarchy() {
         addSubview(datePicker)

@@ -9,6 +9,7 @@ import UIKit
 
 final class TagViewController: BaseViewController {
     let tagView = TagView()
+    var text = ""
     
     override func loadView() {
         view = tagView
@@ -26,6 +27,8 @@ final class TagViewController: BaseViewController {
     
     @objc func saveButtonTapped() {
         print(#function)
+        NotificationCenter.default.post(name: Notification.Name.hashTag, object: text)
+        dismiss(animated: true)
     }
     
     override func configureView() {
@@ -41,6 +44,7 @@ extension TagViewController: UITextFieldDelegate {
         if text.isEmpty {
             navigationItem.rightBarButtonItem?.isEnabled = false
         } else {
+            self.text = text
             navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }

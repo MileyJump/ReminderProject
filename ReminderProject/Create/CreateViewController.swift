@@ -9,12 +9,14 @@ import UIKit
 import RealmSwift
 
 final class CreateViewController: BaseViewController {
-
+    
     private let createView = CreateView()
     private let repository = TodoTableRepository()
     var todoTitle: String = ""
     var todoMemo: String = ""
-//    private var todoList: [TodoTable] = []
+    var todoDate: Date?
+    var todoTag: String = ""
+    //    private var todoList: [TodoTable] = []
     let realm = try! Realm()
     
     override func loadView() {
@@ -25,20 +27,42 @@ final class CreateViewController: BaseViewController {
         super.viewDidLoad()
         print(realm.configuration.fileURL)
         setupNavigationBar(title: "새로운 할 일", leftTitle: "취소", rightTitle: "추가", leftAction: #selector(cancelButtonTapped), rightAction:  #selector(saveButtonTapped))
+        notification()
     }
     
     @objc private func saveButtonTapped() {
         print(#function)
-        
-        let data = TodoTable(todoTitle: todoTitle, todoMemo: todoMemo, todoDate: nil, todoPriority: nil, todoTag: nil, todoImage: nil)
+        let data = TodoTable(todoTitle: todoTitle, todoMemo: todoMemo, todoDate: todoDate, todoPriority: nil, todoTag: todoTag, todoImage: nil)
         repository.createItem(data)
+        dismiss(animated: true)
     }
     
     @objc private func cancelButtonTapped() {
         dismiss(animated: true)
     }
- 
-
+    
+    func notification() {
+        print("노티피케이션")
+        NotificationCenter.default.addObserver(self, selector: #selector(deadlineAction), name: Notification.Name.deadline, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(tagAction), name: Notification.Name.hashTag, object: nil)
+    }
+    
+    @objc func deadlineAction(_ notification: Notification) {
+        // userInfo에서 데이터 추출
+        print("날짜 저장 됐어요?")
+        if let date = notification.object as? Date {
+            todoDate = date
+        }
+    }
+    
+    @objc func tagAction(_ notification: Notification) {
+        print("태그 저장 됐어요?")
+        if let tag = notification.object as? String {
+            todoTag = tag
+        }
+    }
+    
+    
     override func configureView() {
         createView.todoTableView.delegate = self
         createView.todoTableView.dataSource = self
