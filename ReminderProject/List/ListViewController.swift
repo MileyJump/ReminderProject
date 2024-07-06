@@ -68,19 +68,31 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
         
-        let delete = UIContextualAction(style: .destructive, title: "삭제") { _, _, _ in
-            let data = self.todoList[indexPath.row]
-            let imageName = data.id
-            self.removeImageFromDocument(filename: "\(imageName)") // 도큐먼트에서 이미지 삭제(realm X)
-            self.repository.deleteItem(data)
-            tableView.reloadData()
-        }
-            
-        return UISwipeActionsConfiguration(actions: [delete])
-            
-      
-        
-    }
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] (_, _, completion) in
+               guard let self = self else { return }
+               
+               let data = self.todoList[indexPath.row]
+               let imageName = data.id
+               
+               // 도큐먼트에서 이미지 삭제
+               self.removeImageFromDocument(filename: "\(imageName)")
+               
+               // Realm에서 데이터 삭제
+               self.repository.deleteItem(data)
+               
+               // UI 업데이트 및 애니메이션
+               tableView.performBatchUpdates({
+                   self.todoList.remove(at: indexPath.row)
+                   tableView.deleteRows(at: [indexPath], with: .automatic)
+               }, completion: { _ in
+                   // 액션 완료 처리
+                   completion(true)
+               })
+           }
+           
+           return UISwipeActionsConfiguration(actions: [deleteAction])
+       }
 
 }
