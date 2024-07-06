@@ -18,6 +18,7 @@ class TodoTable: Object {
     @Persisted var todoPriority: String?
     @Persisted var todoTag: String?
     @Persisted var todoImage: Date?
+    @Persisted var todoLike: Bool
     
     convenience init(todoTitle: String, todoMemo: String?, todoDate: Date?, todoPriority: String?, todoTag: String?, todoImage: Date?) {
         self.init()
@@ -27,6 +28,7 @@ class TodoTable: Object {
         self.todoPriority = todoPriority
         self.todoTag = todoTag
         self.todoImage = todoImage
+        self.todoLike = false
     }
 }
 

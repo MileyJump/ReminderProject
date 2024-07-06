@@ -27,5 +27,9 @@ final class PriorityViewController: BaseViewController {
     
     @objc func saveButtonTapped() {
         print(#function)
+        
+        guard let selecteSegment = priorityView.segmented.titleForSegment(at: priorityView.segmented.selectedSegmentIndex) else { return }
+        NotificationCenter.default.post(name: Notification.Name.priority, object: selecteSegment)
+        dismiss(animated: true)
     }
 }

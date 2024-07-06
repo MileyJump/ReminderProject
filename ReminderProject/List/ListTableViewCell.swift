@@ -9,11 +9,18 @@ import UIKit
 
 final class ListTableViewCell: BaseTableViewCell {
     
-    private let checkImage = UIImageView()
+    let checkButton = UIButton()
+    private let priorityLabel = UILabel()
     private let titleLabel = UILabel()
     private let memoLabel = UILabel()
     private let dateLabel = UILabel()
     private let tagLabel = UILabel()
+    
+    var checkButtonToggle: Bool = false {
+        didSet {
+            updateCheckButtonImage()
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,20 +29,43 @@ final class ListTableViewCell: BaseTableViewCell {
     func configureCell(_ data: TodoTable) {
         titleLabel.text = data.todoTitle
         memoLabel.text = data.todoMemo
+        checkButtonToggle = data.todoLike
         if let todoDate = data.todoDate {
             dateLabel.text = todoDataformatter(date: todoDate)
         }
         if let tag = data.todoTag {
-            tagLabel.text = "#\(tag)"
+            if tag != "" {
+                tagLabel.text = "#\(tag)"
+            }
+        }
+        
+        if let priority = data.todoPriority {
+            switch priority {
+            case Resource.prioritySegment.height.rawValue:
+                priorityLabel.text = "!!!"
+                print("어디가 실행되고 있는건가요")
+            case Resource.prioritySegment.middle.rawValue:
+                priorityLabel.text = "!!"
+            case Resource.prioritySegment.lowness.rawValue:
+                priorityLabel.text = "!"
+            default:
+                priorityLabel.text = ""
+            }
         }
     }
     
+    func updateCheckButtonImage() {
+        let imageName = checkButtonToggle ? Resource.ImageCase.checkImage.rawValue : Resource.ImageCase.unCheckImage.rawValue
+        checkButton.setImage(UIImage(systemName: imageName), for: .normal)
+    }
+    
     override func configureHierarchy() {
-        contentView.addSubview(checkImage)
+        contentView.addSubview(checkButton)
         contentView.addSubview(titleLabel)
         contentView.addSubview(memoLabel)
         contentView.addSubview(dateLabel)
         contentView.addSubview(tagLabel)
+        contentView.addSubview(priorityLabel)
     }
     
     func todoDataformatter(date: Date) -> String {
@@ -45,26 +75,33 @@ final class ListTableViewCell: BaseTableViewCell {
     }
     
     override func configureLayout() {
-        checkImage.snp.makeConstraints { make in
+        checkButton.snp.makeConstraints { make in
             make.top.equalTo(contentView).inset(10)
             make.leading.equalTo(contentView.snp.leading).inset(10)
             make.size.equalTo(22)
         }
         
+        priorityLabel.snp.makeConstraints { make in
+            make.top.equalTo(checkButton.snp.top)
+            make.leading.equalTo(checkButton.snp.trailing).offset(10)
+//            make.width.equalTo() // 글자 크기에 맞게 동적으로 설정
+        }
+        
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(checkImage.snp.top).offset(2)
-            make.leading.equalTo(checkImage.snp.trailing).offset(10)
+            make.top.equalTo(checkButton.snp.top)
+            make.leading.equalTo(priorityLabel.snp.trailing).offset(2)
             make.trailing.equalTo(contentView).inset(5)
         }
         
         memoLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
-            make.horizontalEdges.equalTo(titleLabel)
+            make.leading.equalTo(priorityLabel.snp.leading)
+            make.trailing.equalTo(titleLabel.snp.trailing)
         }
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(memoLabel.snp.bottom).offset(5)
-            make.leading.equalTo(titleLabel)
+            make.leading.equalTo(priorityLabel.snp.leading)
             make.bottom.equalTo(contentView).inset(10)
         }
         
@@ -77,8 +114,8 @@ final class ListTableViewCell: BaseTableViewCell {
     }
     
     override func configureView() {
-        checkImage.image = UIImage(systemName: Resource.ImageCase.unCheckImage.rawValue)
-        checkImage.tintColor = .systemGray2
+//        checkButton.setImage(UIImage(systemName: Resource.ImageCase.unCheckImage.rawValue), for: .normal)
+        checkButton.tintColor = .systemGray2
         
         titleLabel.font = .systemFont(ofSize: 15)
         titleLabel.textColor = .white
@@ -92,8 +129,9 @@ final class ListTableViewCell: BaseTableViewCell {
         tagLabel.font = .systemFont(ofSize: 13)
         tagLabel.textColor = .systemBlue
         
-//        tagLabel.text = "#공부"
-        
+        priorityLabel.font = .systemFont(ofSize: 15)
+        priorityLabel.textColor = .systemBlue
+        priorityLabel.backgroundColor = .red
     }
     
 }

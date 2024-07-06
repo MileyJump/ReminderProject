@@ -8,6 +8,12 @@
 import UIKit
 
 enum Resource {
+    
+    enum prioritySegment: String {
+        case height = "높음"
+        case middle = "중간"
+        case lowness = "낮음"
+    }
    
     enum placeholder: String {
         case title = "제목"

@@ -17,6 +17,7 @@ final class CreateViewController: BaseViewController {
     var todoDate: Date?
     var todoTag: String = ""
     var todoImage: UIImage?
+    var priority: String = ""
     //    private var todoList: [TodoTable] = []
     let realm = try! Realm()
     
@@ -33,14 +34,13 @@ final class CreateViewController: BaseViewController {
     
     @objc private func saveButtonTapped() {
         print(#function)
-        let data = TodoTable(todoTitle: todoTitle, todoMemo: todoMemo, todoDate: todoDate, todoPriority: nil, todoTag: todoTag, todoImage: nil)
+        let data = TodoTable(todoTitle: todoTitle, todoMemo: todoMemo, todoDate: todoDate, todoPriority: priority, todoTag: todoTag, todoImage: nil)
         repository.createItem(data)
         
         if let image = todoImage {
             saveImageToDocument(image: image, filename: "\(data.id)") // 아이디 값으로 이미지 저장
         }
-        
-        
+        dismiss(animated: true)
     }
     
     @objc private func cancelButtonTapped() {
@@ -52,6 +52,7 @@ final class CreateViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(deadlineAction), name: Notification.Name.deadline, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(tagAction), name: Notification.Name.hashTag, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageAction), name: Notification.Name.todoImage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(priorityAction), name: Notification.Name.priority, object: nil)
     }
     
     @objc func deadlineAction(_ notification: Notification) {
@@ -69,6 +70,12 @@ final class CreateViewController: BaseViewController {
     @objc func imageAction(_ notification: Notification) {
         if let image = notification.object as? UIImage {
             todoImage = image
+        }
+    }
+    
+    @objc func priorityAction(_ notification: Notification) {
+        if let priority = notification.object as? String {
+            self.priority = priority
         }
     }
     

@@ -41,6 +41,10 @@ final class ListViewController: BaseViewController {
     @objc private func menuButtonTapped() {
         print(#function)
     }
+    
+    func checkButtonTapped(_ sender: UIButton) {
+//        todoList[sender.tag].todoLike
+    }
 }
 
 
@@ -53,7 +57,6 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.id, for: indexPath) as? ListTableViewCell else {
             fatalError( "ListTableViewCell 데이터가 없어요")
         }
-        
         cell.configureCell(todoList[indexPath.row])
         
         return cell
@@ -70,6 +73,14 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.id, for: indexPath) as? ListTableViewCell else {
+            fatalError( "ListTableViewCell 데이터가 없어요")
+        }
+        
+        cell.checkButtonToggle.toggle()
     }
     
 }

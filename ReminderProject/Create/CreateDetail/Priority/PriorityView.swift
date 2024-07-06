@@ -11,8 +11,10 @@ final class PriorityView: BaseView {
     
     private let titleLabel = UILabel()
     
-    private let segmented = {
-        let items = ["상", "중", "하"]
+    let segmented = {
+        let items = [Resource.prioritySegment.height.rawValue,
+                     Resource.prioritySegment.middle.rawValue,
+                     Resource.prioritySegment.lowness.rawValue]
         let seg = UISegmentedControl(items: items)
         seg.selectedSegmentIndex = 0
         seg.backgroundColor = .systemGray5
