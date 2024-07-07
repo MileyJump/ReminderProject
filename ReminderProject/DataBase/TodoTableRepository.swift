@@ -21,6 +21,9 @@ final class TodoTableRepository {
     
     // Realm 필터링
     func filterItem(todoType: TodoType) -> [TodoTable] {
+        let today = Calendar.current.startOfDay(for: Date())
+        let endOfToday = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        // 오늘에 하루(.day, value: 1)를 더 하는 코드, 내일 자정을 의미
         switch todoType {
         case .all:
             return fetchAll()
@@ -29,9 +32,10 @@ final class TodoTableRepository {
         case .flag:
             return fetchAll()
         case .schedule:
-            return fetchAll()
+            return Array(realm.objects(TodoTable.self).filter("todoDate >= %@", endOfToday))
         case .today:
-            return fetchAll()
+            
+            return Array(realm.objects(TodoTable.self).filter("todoDate >= %@ AND todoDate < %@", today, endOfToday))
         }
     }
     
