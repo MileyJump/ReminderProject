@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class MainViewController: BaseViewController {
     
     private let mainView = MainView()
+    private let repository = TodoTableRepository()
     
     override func loadView() {
         view = mainView
@@ -17,6 +19,10 @@ final class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        mainView.collectionView.reloadData()
     }
     
     override func configureView() {
@@ -55,9 +61,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             fatalError("MainCollectionViewCell 데이터가 없습니다.")
         }
         let todoCase = TodoType.allCases[indexPath.row]
-        cell.configureCell(todoCase)
+        cell.configureCell(todoCase, data: repository)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = ListViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

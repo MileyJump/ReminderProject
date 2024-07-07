@@ -19,6 +19,22 @@ final class TodoTableRepository {
         return Array(todoList)
     }
     
+    // Realm 필터링
+    func filterItem(todoType: TodoType) -> [TodoTable] {
+        switch todoType {
+        case .all:
+            return fetchAll()
+        case .finish:
+            return Array(realm.objects(TodoTable.self).filter("todoLike==true"))
+        case .flag:
+            return fetchAll()
+        case .schedule:
+            return fetchAll()
+        case .today:
+            return fetchAll()
+        }
+    }
+    
     // Realm 추가하기
     func createItem(_ data: TodoTable) {
         do {
@@ -51,4 +67,6 @@ final class TodoTableRepository {
             print("Realm Update Failed")
         }
     }
+    
+    
 }

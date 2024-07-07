@@ -47,11 +47,14 @@ final class MainCollectionViewCell: BaseCollectionViewCell {
         titleLabel.font = .systemFont(ofSize: 15)
     }
     
-    func configureCell(_ data: TodoType) {
-        titleLabel.text = data.title
-        iconImageView.image = UIImage(systemName: data.imageName)
-        iconImageView.tintColor = data.imageColor
-        countLabel.text = "\(1)"
+    func configureCell(_ type: TodoType, data: TodoTableRepository) {
+        titleLabel.text = type.title
+        iconImageView.image = UIImage(systemName: type.imageName)
+        iconImageView.tintColor = type.imageColor
+        
+        countLabel.text = "\(data.filterItem(todoType: type).count)"
+        
+        
     }
     
     
