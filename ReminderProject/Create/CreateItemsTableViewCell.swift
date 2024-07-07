@@ -8,11 +8,13 @@
 import UIKit
 import SnapKit
 
-final class TodoListTableViewCell: BaseTableViewCell {
+final class CreateItemsTableViewCell: BaseTableViewCell {
     
     private let bgView = UIView()
     private let titleLabel = UILabel()
     private let chevronImage = UIImageView()
+    private let itemLabel = UILabel()
+    private let thumbnailImage = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,10 +24,37 @@ final class TodoListTableViewCell: BaseTableViewCell {
         contentView.addSubview(bgView)
         bgView.addSubview(titleLabel)
         bgView.addSubview(chevronImage)
+        bgView.addSubview(itemLabel)
+        bgView.addSubview(thumbnailImage)
     }
     
-    func configureCell(_ data: AddType ) {
-        titleLabel.text = data.rawValue
+    override func prepareForReuse() {
+        itemLabel.text = ""
+        thumbnailImage.image = nil
+    }
+    
+    func configureCell(_ type: AddType, data: TodoTable, image: UIImage? ) {
+        titleLabel.text = type.rawValue
+
+        switch type {
+        case .deadline :
+            if let date = data.todoDate {
+                itemLabel.text = formatter(date: date)
+            }
+        case .priority:
+            itemLabel.text = data.todoPriority
+        case .tag:
+            itemLabel.text = data.todoTag
+        case .addImage:
+            thumbnailImage.image = loadImageToDocument(filename: "\(data.id)")
+        }
+    }
+    
+    func formatter(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        let dateString = formatter.string(from: date)
+        return dateString
     }
     
     override func configureLayout() {
@@ -45,6 +74,19 @@ final class TodoListTableViewCell: BaseTableViewCell {
             make.trailing.equalTo(bgView.snp.trailing).inset(10)
             make.height.equalTo(20)
         }
+        
+        itemLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView)
+            make.trailing.equalTo(chevronImage.snp.leading).inset(-10)
+        }
+        
+        thumbnailImage.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView)
+            make.verticalEdges.equalTo(bgView).inset(5)
+            make.width.equalTo(thumbnailImage.snp.height)
+            make.trailing.equalTo(chevronImage.snp.leading).inset(-10)
+        }
+        
     }
     
     override func configureView() {
@@ -55,6 +97,10 @@ final class TodoListTableViewCell: BaseTableViewCell {
         chevronImage.tintColor = .systemGray2
         
         titleLabel.font = .systemFont(ofSize: 13)
+        
+        itemLabel.font = .systemFont(ofSize: 13)
+        
+        thumbnailImage.layer.cornerRadius = 10
     }
     
 }

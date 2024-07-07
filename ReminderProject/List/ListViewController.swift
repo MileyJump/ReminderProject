@@ -34,13 +34,19 @@ final class ListViewController: BaseViewController {
     }
     
     private func setupNavigationBar() {
-        let menu = UIBarButtonItem(image: UIImage(systemName: Resource.ImageCase.moreImage.rawValue), style: .plain, target: self, action: #selector(menuButtonTapped))
+        let ascAction = UIAction(title: "오래된 순", handler: { _ in print("확인") })
+        let dscAction = UIAction(title: "최신 순", handler: { _ in print("확인") })
+        let priorityAction = UIAction(title: "우선순위 높음만 보기") { _ in
+            print("확인")
+        }
+        let buttonMenu = UIMenu(children: [ascAction, dscAction, priorityAction ])
+
+        let menu = UIBarButtonItem(title: nil, image: UIImage(systemName: Resource.ImageCase.moreImage.rawValue), menu: buttonMenu)
         navigationItem.rightBarButtonItem = menu
+        
     }
     
-    @objc private func menuButtonTapped() {
-        print(#function)
-    }
+ 
     
     @objc func checkButtonTapped(_ sender: UIButton) {
         repository.updateItem {
@@ -68,7 +74,24 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+//        let delete = UIContextualAction(style: .destructive, title: "삭제") {  _, _, success in
 
+//            let data = self.todoList[indexPath.row]
+
+//            let imageName = data.id
+
+//            self.removeImageFromDocument(filename: "\(imageName)") // 도큐먼트에서 이미지 삭제(realm X)
+
+//            self.repository.deleteItem(data)
+
+//            success(true)
+
+//            tableView.reloadData()
+//        }
+//
+//        return UISwipeActionsConfiguration(actions: [delete])
+//    }
         
         let deleteAction = UIContextualAction(style: .destructive, title: "삭제") { [weak self] (_, _, completion) in
                guard let self = self else { return }
@@ -77,7 +100,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
                let imageName = data.id
                
                // 도큐먼트에서 이미지 삭제
-               self.removeImageFromDocument(filename: "\(imageName)")
+            self.view.removeImageFromDocument(filename: "\(imageName)")
                
                // Realm에서 데이터 삭제
                self.repository.deleteItem(data)

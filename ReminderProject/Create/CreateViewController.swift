@@ -12,13 +12,13 @@ final class CreateViewController: BaseViewController {
     
     private let createView = CreateView()
     private let repository = TodoTableRepository()
-    var todoTitle: String = ""
-    var todoMemo: String = ""
-    var todoDate: Date?
-    var todoTag: String = ""
+//    var todoTitle: String = ""
+//    var todoMemo: String = ""
+//    var todoDate: Date?
+//    var todoTag: String = ""
     var todoImage: UIImage?
-    var priority: String = ""
-    //    private var todoList: [TodoTable] = []
+//    var priority: String = ""
+    private var todo: TodoTable = TodoTable(todoTitle: "", todoMemo: "", todoDate: nil, todoPriority: "", todoTag: "", todoImage: nil)
     let realm = try! Realm()
     
     override func loadView() {
@@ -34,11 +34,11 @@ final class CreateViewController: BaseViewController {
     
     @objc private func saveButtonTapped() {
         print(#function)
-        let data = TodoTable(todoTitle: todoTitle, todoMemo: todoMemo, todoDate: todoDate, todoPriority: priority, todoTag: todoTag, todoImage: nil)
+        let data = TodoTable(todoTitle: todo.todoTitle, todoMemo: todo.todoMemo, todoDate: todo.todoDate, todoPriority: todo.todoPriority, todoTag: todo.todoTag, todoImage: nil)
         repository.createItem(data)
         
         if let image = todoImage {
-            saveImageToDocument(image: image, filename: "\(data.id)") // 아이디 값으로 이미지 저장
+            self.view.saveImageToDocument(image: image, filename: "\(data.id)") // 아이디 값으로 이미지 저장
         }
         dismiss(animated: true)
     }
@@ -57,25 +57,29 @@ final class CreateViewController: BaseViewController {
     
     @objc func deadlineAction(_ notification: Notification) {
         if let date = notification.object as? Date {
-            todoDate = date
+            todo.todoDate = date
+            createView.todoTableView.reloadData()
         }
     }
     
     @objc func tagAction(_ notification: Notification) {
         if let tag = notification.object as? String {
-            todoTag = tag
+            todo.todoTag = tag
+            createView.todoTableView.reloadData()
         }
     }
     
     @objc func imageAction(_ notification: Notification) {
         if let image = notification.object as? UIImage {
             todoImage = image
+            
         }
     }
     
     @objc func priorityAction(_ notification: Notification) {
         if let priority = notification.object as? String {
-            self.priority = priority
+            todo.todoPriority = priority
+            createView.todoTableView.reloadData()
         }
     }
     
@@ -83,7 +87,7 @@ final class CreateViewController: BaseViewController {
     override func configureView() {
         createView.todoTableView.delegate = self
         createView.todoTableView.dataSource = self
-        createView.todoTableView.register(TodoListTableViewCell.self, forCellReuseIdentifier: TodoListTableViewCell.id)
+        createView.todoTableView.register(CreateItemsTableViewCell.self, forCellReuseIdentifier: CreateItemsTableViewCell.id)
         createView.todoTableView.register(CreateContentTableViewCell.self, forCellReuseIdentifier: CreateContentTableViewCell.id)
         createView.todoTableView.estimatedRowHeight = 44.0
         createView.todoTableView.rowHeight = UITableView.automaticDimension
@@ -94,7 +98,7 @@ extension CreateViewController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if let text = textField.text {
-            todoTitle = text
+            todo.todoTitle = text
             if !text.isEmpty {
                 navigationItem.rightBarButtonItem?.isEnabled = true
             } else {
@@ -107,7 +111,8 @@ extension CreateViewController: UITextFieldDelegate {
 extension CreateViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
-        todoMemo = textView.text
+//        todoMemo = textView.text
+        todo.todoMemo = textView.text
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -140,11 +145,12 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             
             return contentCell
         } else {
-            guard let itemCell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.id, for: indexPath) as? TodoListTableViewCell else {
+            guard let itemCell = tableView.dequeueReusableCell(withIdentifier: CreateItemsTableViewCell.id, for: indexPath) as? CreateItemsTableViewCell else {
                 fatalError("TodoListTableViewCell 데이터가 없습니다.")
             }
-            let data = AddType.allCases[indexPath.row - 1]
-            itemCell.configureCell(data)
+            let type = AddType.allCases[indexPath.row - 1]
+            print(todo)
+            itemCell.configureCell(type, data: todo, image: todoImage)
             return itemCell
         }
     }
@@ -157,7 +163,6 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let addType = AddType.allCases[indexPath.row - 1]
-        print("동작이 돼요?")
         switch addType {
         case .deadline :
             let vc = DeadlineViewController()

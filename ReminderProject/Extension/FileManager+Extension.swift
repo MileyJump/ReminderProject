@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIViewController {
+extension UIView {
     
     func saveImageToDocument(image: UIImage, filename: String) {
         guard let documentDirectory = FileManager.default.urls(
