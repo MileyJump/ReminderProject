@@ -9,9 +9,13 @@ import UIKit
 
 final class ListViewController: BaseViewController {
     
+    
     private let listView = ListView()
     private let repository = TodoTableRepository()
     private var todoList: [TodoTable] = []
+    private var filterList: [TodoTable] = []
+    
+    var folder: FolderTable?
     
     
     override func loadView() {
@@ -22,7 +26,12 @@ final class ListViewController: BaseViewController {
         super.viewDidLoad()
         setupNavigationBar()
         
-        todoList = repository.fetchAll()
+//        todoList = repository.fetchAll()
+        
+        if let folder = folder {
+            let value = folder.detail
+            todoList = Array(value)
+        }
     }
     
     override func configureView() {
@@ -44,6 +53,9 @@ final class ListViewController: BaseViewController {
         let menu = UIBarButtonItem(title: nil, image: UIImage(systemName: Resource.ImageCase.moreImage.rawValue), menu: buttonMenu)
         navigationItem.rightBarButtonItem = menu
         
+        if let folder = folder {
+            navigationItem.title = folder.name
+        }
     }
     
  

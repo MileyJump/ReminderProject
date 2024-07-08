@@ -10,6 +10,7 @@ import SnapKit
 
 class ListView: BaseView {
     
+    
     private let titleLabel = {
         let label = UILabel()
         label.text = "전체"
@@ -22,6 +23,10 @@ class ListView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    
+    func configureCell(_ type: TodoType) {
+        
     }
     
     override func configureHierarchy() {

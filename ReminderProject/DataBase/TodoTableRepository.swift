@@ -13,6 +13,11 @@ final class TodoTableRepository {
     // Realm 위치 찾기
     private let realm = try! Realm()
     
+    func fetchFolder() -> [FolderTable] {
+        let value = realm.objects(FolderTable.self)
+        return Array(value)
+    }
+    
     // Realm 가져오기
     func fetchAll() -> [TodoTable] {
         let todoList = realm.objects(TodoTable.self)
@@ -36,6 +41,10 @@ final class TodoTableRepository {
         case .today:
             
             return Array(realm.objects(TodoTable.self).filter("todoDate >= %@ AND todoDate < %@", today, endOfToday))
+        case .study:
+            return fetchAll()
+        case .workOut:
+            return fetchAll()
         }
     }
     

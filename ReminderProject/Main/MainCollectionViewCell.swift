@@ -11,7 +11,7 @@ final class MainCollectionViewCell: BaseCollectionViewCell {
     
     private let iconImageView = UIImageView()
     private let titleLabel = UILabel()
-    private let countLabel = UILabel()
+     let countLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,7 +52,7 @@ final class MainCollectionViewCell: BaseCollectionViewCell {
         iconImageView.image = UIImage(systemName: type.imageName)
         iconImageView.tintColor = type.imageColor
         
-        countLabel.text = "\(data.filterItem(todoType: type).count)"
+//        countLabel.text = "\(data.filterItem(todoType: type).count)"
         
         
     }

@@ -10,8 +10,11 @@ import RealmSwift
 
 final class MainViewController: BaseViewController {
     
+    let realm = try! Realm()
+    
     private let mainView = MainView()
     private let repository = TodoTableRepository()
+    var list: [FolderTable] = []
     
     override func loadView() {
         view = mainView
@@ -19,6 +22,9 @@ final class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(realm.configuration.fileURL)
+        list = repository.fetchFolder()
+        print(repository.fetchAll())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +39,6 @@ final class MainViewController: BaseViewController {
         mainView.collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.id)
         
         mainView.addTodoButton.addTarget(self, action: #selector(addTodoButtonTapped), for: .touchUpInside)
-        mainView.addListButton.addTarget(self, action: #selector(addListButtonTapped), for: .touchUpInside)
     }
     
     @objc private func addTodoButtonTapped() {
@@ -41,14 +46,7 @@ final class MainViewController: BaseViewController {
         let vc = CreateViewController()
         let navigationController = UINavigationController(rootViewController: vc)
         present(navigationController, animated: true, completion: nil)
-    }
-    
-    @objc private func addListButtonTapped() {
-        print(#function)
-        let vc = ListViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+    }  
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -62,12 +60,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         let todoCase = TodoType.allCases[indexPath.row]
         cell.configureCell(todoCase, data: repository)
-        
+//        let data = list[indexPath.row]
+//        cell.countLabel.text = data.detail.count
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = ListViewController()
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     

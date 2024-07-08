@@ -9,7 +9,7 @@ import UIKit
 
 final class MainView: BaseView {
     
-    private let titleLabel = {
+    let titleLabel = {
         let label = UILabel()
         label.text = "전체"
         label.font = .boldSystemFont(ofSize: 30)
@@ -42,14 +42,6 @@ final class MainView: BaseView {
         return button
     }()
     
-    let addListButton = {
-        let button = UIButton()
-        button.setTitle("목록 추가", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        return button
-    }()
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -58,7 +50,6 @@ final class MainView: BaseView {
     override func configureHierarchy() {
         addSubview(titleLabel)
         addSubview(addTodoButton)
-        addSubview(addListButton)
         addSubview(collectionView)
     }
     
@@ -71,11 +62,6 @@ final class MainView: BaseView {
         addTodoButton.snp.makeConstraints { make in
             make.leading.bottom.equalTo(safeAreaLayoutGuide).inset(5)
             make.height.equalTo(40)
-        }
-        
-        addListButton.snp.makeConstraints { make in
-            make.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(5)
-            make.height.equalTo(addTodoButton)
         }
         
         collectionView.snp.makeConstraints { make in

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // if - else구문으로 해줄 경우, 0에서 2로 가고싶은데 0 -> 1 처리하고 빠져버리기 때문
+        let config = Realm.Configuration(schemaVersion: 2) { migration, oldSchemaVersion in
+            if oldSchemaVersion < 1 {
+                // folder / column / add
+                // 단순 컬럼, 테이블 추가나 삭제 등의 경우에는 코드 X
+            }
+            
+            if oldSchemaVersion < 2 {
+                // folder / column / add
+                // 단순 컬럼, 테이블 추가나 삭제 등의 경우에는 코드 X
+            }
+       
+        }
+        // config 변경하고 변경한 config 대입해주기
+        Realm.Configuration.defaultConfiguration = config
         return true
     }
 
