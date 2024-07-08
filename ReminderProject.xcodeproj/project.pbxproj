@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B01B2DAE2C3C094000B981FC /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01B2DAD2C3C094000B981FC /* CategoryView.swift */; };
 		B01B2DB02C3C0A0F00B981FC /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01B2DAF2C3C0A0F00B981FC /* CategoryCollectionViewCell.swift */; };
 		B08F10BB2C341B1C003B4009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10BA2C341B1C003B4009 /* AppDelegate.swift */; };
 		B08F10BD2C341B1C003B4009 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10BC2C341B1C003B4009 /* SceneDelegate.swift */; };
@@ -62,7 +61,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B01B2DAD2C3C094000B981FC /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		B01B2DAF2C3C0A0F00B981FC /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B08F10B72C341B1C003B4009 /* ReminderProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B08F10BA2C341B1C003B4009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				B08F10EE2C35808B003B4009 /* MainView.swift */,
-				B01B2DAD2C3C094000B981FC /* CategoryView.swift */,
 				B08F10EC2C357F78003B4009 /* MainViewController.swift */,
 				B08F10F32C35876F003B4009 /* MainCollectionViewCell.swift */,
 				B01B2DAF2C3C0A0F00B981FC /* CategoryCollectionViewCell.swift */,
@@ -358,7 +355,6 @@
 				B08F112C2C393DDA003B4009 /* PriorityView.swift in Sources */,
 				B08F10FA2C358E25003B4009 /* CreateContentTableViewCell.swift in Sources */,
 				B08F11322C394446003B4009 /* AddImageViewController.swift in Sources */,
-				B01B2DAE2C3C094000B981FC /* CategoryView.swift in Sources */,
 				B08F10EF2C35808B003B4009 /* MainView.swift in Sources */,
 				B08F11202C383600003B4009 /* DeadlineViewController.swift in Sources */,
 				B08F10ED2C357F78003B4009 /* MainViewController.swift in Sources */,

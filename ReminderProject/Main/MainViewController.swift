@@ -35,15 +35,20 @@ final class MainViewController: BaseViewController {
         navigationItem.backButtonTitle = ""
         
         mainView.collectionView.delegate = self
-        mainView.categoryCollectionView.delegate = self
-        
         mainView.collectionView.dataSource = self
+        
+        mainView.categoryCollectionView.delegate = self
         mainView.categoryCollectionView.dataSource = self
         
         mainView.collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.id)
         mainView.categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.id)
         
         mainView.addTodoButton.addTarget(self, action: #selector(addTodoButtonTapped), for: .touchUpInside)
+        
+        mainView.collectionView.tag = 1
+        mainView.categoryCollectionView.tag = 2
+        
+        
     }
     
     @objc private func addTodoButtonTapped() {
@@ -88,14 +93,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == mainView.collectionView {
+       
+        if collectionView.tag == 1  {
+            print("되고 있느ㅁㅇㄹㅁ")
             let vc = ListViewController()
             //        let vc = CreateViewController()
 //            vc.folder = folderList[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
-        } else {
+        }
+        if collectionView.tag == 2 {
             let vc = ListViewController()
-            //        let vc = CreateViewController()
+            print("되고 있느냐ㅑㅑㅑㅑ")
             vc.folder = folderList[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }

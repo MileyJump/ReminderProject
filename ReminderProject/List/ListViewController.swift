@@ -28,7 +28,7 @@ final class ListViewController: BaseViewController {
         setupNavigationBar(title: folder?.name, leftTitle: nil, rightTitle: "추가", leftAction: nil, rightAction: #selector(rightButtonTapped))
         navigationItem.rightBarButtonItem?.isEnabled = true
         
-//        todoList = repository.fetchAll()
+        
         
         // 폴더테이블을 todoList에 담기 (이전 코드 때문)
         if let folder = folder {
@@ -37,6 +37,8 @@ final class ListViewController: BaseViewController {
 //            print(todoList)
             listView.listTableView.reloadData()
         }
+        // 폴더테이블이 없으면
+        todoList = repository.fetchAll()
     }
     
     override func configureView() {
