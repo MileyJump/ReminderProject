@@ -21,8 +21,6 @@ enum TodoType: String, CaseIterable {
     case all
     case flag
     case finish
-    case study
-    case workOut
     
     var title: String {
         switch self {
@@ -36,10 +34,6 @@ enum TodoType: String, CaseIterable {
             "깃발표시"
         case .finish:
             "완료됨"
-        case .study:
-            "공부"
-        case .workOut:
-            "운동"
         }
     }
     
@@ -55,10 +49,6 @@ enum TodoType: String, CaseIterable {
             return "flag.circle.fill"
         case .finish:
             return "checkmark.circle.fill"
-        case .study:
-            return "pencil.circle.fill"
-        case .workOut:
-            return "pencil.circle.fill"
         }
     }
     
@@ -74,11 +64,6 @@ enum TodoType: String, CaseIterable {
             return .systemYellow
         case .finish:
             return .lightGray
-        case .study:
-            return .systemPink
-        case .workOut:
-            return .systemPurple
         }
     }
 }
-

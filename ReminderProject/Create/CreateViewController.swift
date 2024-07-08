@@ -24,13 +24,15 @@ final class CreateViewController: BaseViewController {
     
     override func loadView() {
         view = createView
-        
     }
     
+    
+    // 왜 뷰디드로드가 실행이 안 될까요? ^^ 브레이크포인트도 안 되고,.. 프린트도 안 되고.... 왜...ㅠㅠ
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(realm.configuration.fileURL)
         guard let folder = folder else { return }
+        
         
         setupNavigationBar(title: "\(folder.name) : 새로운 할 일", leftTitle: "취소", rightTitle: "추가", leftAction: #selector(cancelButtonTapped), rightAction:  #selector(saveButtonTapped))
         
@@ -46,6 +48,7 @@ final class CreateViewController: BaseViewController {
     @objc private func saveButtonTapped() {
         print(#function)
         let data = TodoTable(todoTitle: todo.todoTitle, todoMemo: todo.todoMemo, todoDate: todo.todoDate, todoPriority: todo.todoPriority, todoTag: todo.todoTag, todoImage: nil)
+        
         if let folder = folder {
             repository.createItem(data, folder: folder)
         }

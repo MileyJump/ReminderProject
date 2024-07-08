@@ -1,13 +1,13 @@
 //
-//  MainView.swift
+//  CategoryView.swift
 //  ReminderProject
 //
-//  Created by 최민경 on 7/3/24.
+//  Created by 최민경 on 7/8/24.
 //
 
 import UIKit
 
-final class MainView: BaseView {
+final class CategoryView: BaseView {
     
     let titleLabel = {
         let label = UILabel()
@@ -18,7 +18,6 @@ final class MainView: BaseView {
     }()
     
      lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
-     lazy var categoryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
     private func layout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
@@ -52,7 +51,6 @@ final class MainView: BaseView {
         addSubview(titleLabel)
         addSubview(addTodoButton)
         addSubview(collectionView)
-        addSubview(categoryCollectionView)
     }
     
     override func configureLayout() {
@@ -68,15 +66,9 @@ final class MainView: BaseView {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom)
-//            make.bottom.equalTo(addTodoButton.snp.top)
-            make.height.equalTo(self.snp.height).multipliedBy(0.45)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide)
-        }
-        
-        categoryCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom)
             make.bottom.equalTo(addTodoButton.snp.top)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
         }
-    }    
+    }
+    
 }

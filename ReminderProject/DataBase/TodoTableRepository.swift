@@ -24,43 +24,6 @@ final class TodoTableRepository {
         return Array(todoList)
     }
     
-    // Realm 필터링
-    func filterItem(todoType: TodoType) -> [TodoTable] {
-        let today = Calendar.current.startOfDay(for: Date())
-        let endOfToday = Calendar.current.date(byAdding: .day, value: 1, to: today)!
-        // 오늘에 하루(.day, value: 1)를 더 하는 코드, 내일 자정을 의미
-        switch todoType {
-        case .all:
-            return fetchAll()
-        case .finish:
-            return Array(realm.objects(TodoTable.self).filter("todoLike==true"))
-        case .flag:
-            return fetchAll()
-        case .schedule:
-            return Array(realm.objects(TodoTable.self).filter("todoDate >= %@", endOfToday))
-        case .today:
-            
-            return Array(realm.objects(TodoTable.self).filter("todoDate >= %@ AND todoDate < %@", today, endOfToday))
-        case .study:
-            return fetchAll()
-        case .workOut:
-            return fetchAll()
-        }
-    }
-    
-    // Realm 추가하기
-    func createItem(_ data: TodoTable, folder: FolderTable) {
-        do {
-            try realm.write {
-                folder.detail.append(data)
-//                realm.add(data)
-                print("Realm Create Succeed")
-            }
-        } catch {
-            print("Realm Error")
-        }
-    }
-    
     func deleteItem(_ data: TodoTable) {
         do {
             try realm.write {
@@ -82,5 +45,39 @@ final class TodoTableRepository {
         }
     }
     
+    // Realm 필터링
+    func filterItem(todoType: TodoType) -> [TodoTable] {
+        let today = Calendar.current.startOfDay(for: Date())
+        let endOfToday = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        // 오늘에 하루(.day, value: 1)를 더 하는 코드, 내일 자정을 의미
+        switch todoType {
+        case .all:
+            return fetchAll()
+        case .finish:
+            return Array(realm.objects(TodoTable.self).filter("todoLike==true"))
+        case .flag:
+            return fetchAll()
+        case .schedule:
+            return Array(realm.objects(TodoTable.self).filter("todoDate >= %@", endOfToday))
+        case .today:
+            
+            return Array(realm.objects(TodoTable.self).filter("todoDate >= %@ AND todoDate < %@", today, endOfToday))
+        }
+    }
+    
+    // Realm 추가하기
+    func createItem(_ data: TodoTable, folder: FolderTable) {
+        do {
+            try realm.write {
+                folder.detail.append(data)
+                //                realm.add(data)
+                print("Realm Create Succeed")
+            }
+        } catch {
+            print("Realm Error")
+        }
+    }
+    
     
 }
+

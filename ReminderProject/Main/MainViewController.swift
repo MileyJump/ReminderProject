@@ -35,8 +35,13 @@ final class MainViewController: BaseViewController {
         navigationItem.backButtonTitle = ""
         
         mainView.collectionView.delegate = self
+        mainView.categoryCollectionView.delegate = self
+        
         mainView.collectionView.dataSource = self
+        mainView.categoryCollectionView.dataSource = self
+        
         mainView.collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.id)
+        mainView.categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.id)
         
         mainView.addTodoButton.addTarget(self, action: #selector(addTodoButtonTapped), for: .touchUpInside)
     }
@@ -51,28 +56,49 @@ final class MainViewController: BaseViewController {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return TodoType.allCases.count
-        return folderList.count
+        
+        if collectionView == mainView.collectionView {
+            return TodoType.allCases.count
+        } else {
+            return folderList.count
+            
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.id, for: indexPath) as? MainCollectionViewCell else {
-            fatalError("MainCollectionViewCell 데이터가 없습니다.")
+        if collectionView == mainView.collectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.id, for: indexPath) as? MainCollectionViewCell else {
+                fatalError("MainCollectionViewCell 데이터가 없습니다.")
+            }
+            
+            let todoCase = TodoType.allCases[indexPath.row]
+            cell.configureCell(todoCase, data: repository)
+            
+            return cell
+        } else {
+            guard let categorycell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.id, for: indexPath) as? CategoryCollectionViewCell else {
+                fatalError("MainCollectionViewCell 데이터가 없습니다.")
+            }
+            let data = folderList[indexPath.row]
+            categorycell.titleLabel.text = data.name
+            categorycell.countLabel.text = "\(data.detail.count)"
+            collectionView.reloadData()
+            
+            return categorycell
         }
-//        let todoCase = TodoType.allCases[indexPath.row]
-//        cell.configureCell(todoCase, data: repository)
-
-        let data = folderList[indexPath.row]
-        cell.titleLabel.text = data.name
-        cell.countLabel.text = "\(data.detail.count)"
-        return cell
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = ListViewController()
-//        let vc = CreateViewController()
-        vc.folder = folderList[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        if collectionView == mainView.collectionView {
+            let vc = ListViewController()
+            //        let vc = CreateViewController()
+//            vc.folder = folderList[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let vc = ListViewController()
+            //        let vc = CreateViewController()
+            vc.folder = folderList[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
-    
 }

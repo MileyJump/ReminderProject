@@ -1,13 +1,13 @@
 //
-//  MainCollectionViewCell.swift
+//  CategoryCollectionViewCell.swift
 //  ReminderProject
 //
-//  Created by 최민경 on 7/3/24.
+//  Created by 최민경 on 7/8/24.
 //
 
 import UIKit
 
-final class MainCollectionViewCell: BaseCollectionViewCell {
+final class CategoryCollectionViewCell: BaseCollectionViewCell {
     
     private let iconImageView = UIImageView()
      let titleLabel = UILabel()
@@ -47,15 +47,6 @@ final class MainCollectionViewCell: BaseCollectionViewCell {
         titleLabel.font = .systemFont(ofSize: 15)
     }
     
-    func configureCell(_ type: TodoType, data: TodoTableRepository) {
-        titleLabel.text = type.title
-        iconImageView.image = UIImage(systemName: type.imageName)
-        iconImageView.tintColor = type.imageColor
-        
-        countLabel.text = "\(data.filterItem(todoType: type).count)"
-        
-        
-    }
     
     
     

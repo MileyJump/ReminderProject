@@ -35,6 +35,7 @@ final class ListViewController: BaseViewController {
             let value = folder.detail
             todoList = Array(value)
 //            print(todoList)
+            listView.listTableView.reloadData()
         }
     }
     
@@ -48,6 +49,7 @@ final class ListViewController: BaseViewController {
     
     @objc func rightButtonTapped() {
         let vc = CreateViewController()
+        vc.folder = folder
         navigationController?.pushViewController(vc, animated: true)
     }
     
