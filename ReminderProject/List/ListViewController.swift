@@ -13,7 +13,7 @@ final class ListViewController: BaseViewController {
     private let listView = ListView()
     private let repository = TodoTableRepository()
     private var todoList: [TodoTable] = []
-    private var filterList: [TodoTable] = []
+    
     
     var folder: FolderTable?
     
@@ -24,13 +24,17 @@ final class ListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
+//        setupNavigationBar()
+        setupNavigationBar(title: folder?.name, leftTitle: nil, rightTitle: "추가", leftAction: nil, rightAction: #selector(rightButtonTapped))
+        navigationItem.rightBarButtonItem?.isEnabled = true
         
 //        todoList = repository.fetchAll()
         
+        // 폴더테이블을 todoList에 담기 (이전 코드 때문)
         if let folder = folder {
             let value = folder.detail
             todoList = Array(value)
+//            print(todoList)
         }
     }
     
@@ -40,6 +44,11 @@ final class ListViewController: BaseViewController {
         listView.listTableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.id)
         listView.listTableView.estimatedRowHeight = 100
         listView.listTableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    @objc func rightButtonTapped() {
+        let vc = CreateViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setupNavigationBar() {
@@ -78,7 +87,9 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.id, for: indexPath) as? ListTableViewCell else {
             fatalError( "ListTableViewCell 데이터가 없어요")
         }
-        cell.configureCell(todoList[indexPath.row])
+        
+        let data = todoList[indexPath.row]
+        cell.configureCell(data)
         cell.checkButton.tag = indexPath.row
         cell.checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
         return cell

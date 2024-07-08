@@ -49,10 +49,11 @@ final class TodoTableRepository {
     }
     
     // Realm 추가하기
-    func createItem(_ data: TodoTable) {
+    func createItem(_ data: TodoTable, folder: FolderTable) {
         do {
             try realm.write {
-                realm.add(data)
+                folder.detail.append(data)
+//                realm.add(data)
                 print("Realm Create Succeed")
             }
         } catch {

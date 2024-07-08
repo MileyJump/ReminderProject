@@ -17,34 +17,53 @@ final class CreateViewController: BaseViewController {
 //    var todoDate: Date?
 //    var todoTag: String = ""
     var todoImage: UIImage?
+    var folder: FolderTable?
 //    var priority: String = ""
     private var todo: TodoTable = TodoTable(todoTitle: "", todoMemo: "", todoDate: nil, todoPriority: "", todoTag: "", todoImage: nil)
     let realm = try! Realm()
     
     override func loadView() {
         view = createView
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(realm.configuration.fileURL)
-        setupNavigationBar(title: "새로운 할 일", leftTitle: "취소", rightTitle: "추가", leftAction: #selector(cancelButtonTapped), rightAction:  #selector(saveButtonTapped))
+//        print(realm.configuration.fileURL)
+        guard let folder = folder else { return }
+        
+        setupNavigationBar(title: "\(folder.name) : 새로운 할 일", leftTitle: "취소", rightTitle: "추가", leftAction: #selector(cancelButtonTapped), rightAction:  #selector(saveButtonTapped))
+        
         notification()
+        
+//        if let folder = folder {
+//            let value = folder.detail
+//            todoList = Array(value)
+//        }
+        
     }
     
     @objc private func saveButtonTapped() {
         print(#function)
         let data = TodoTable(todoTitle: todo.todoTitle, todoMemo: todo.todoMemo, todoDate: todo.todoDate, todoPriority: todo.todoPriority, todoTag: todo.todoTag, todoImage: nil)
-        repository.createItem(data)
+        if let folder = folder {
+            repository.createItem(data, folder: folder)
+        }
         
         if let image = todoImage {
             self.view.saveImageToDocument(image: image, filename: "\(data.id)") // 아이디 값으로 이미지 저장
         }
-        dismiss(animated: true)
+//        dismiss(animated: true)
+        
+        
+        
+        navigationController?.popViewController(animated: true)
+        
     }
     
     @objc private func cancelButtonTapped() {
-        dismiss(animated: true)
+//        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     func notification() {

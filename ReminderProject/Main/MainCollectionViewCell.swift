@@ -10,7 +10,7 @@ import UIKit
 final class MainCollectionViewCell: BaseCollectionViewCell {
     
     private let iconImageView = UIImageView()
-    private let titleLabel = UILabel()
+     let titleLabel = UILabel()
      let countLabel = UILabel()
     
     override init(frame: CGRect) {
