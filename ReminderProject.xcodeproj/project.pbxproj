@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B01B2DB02C3C0A0F00B981FC /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01B2DAF2C3C0A0F00B981FC /* CategoryCollectionViewCell.swift */; };
+		B01B2DC02C3D80A100B981FC /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01B2DBF2C3D80A100B981FC /* Observable.swift */; };
+		B01B2DC22C3D823700B981FC /* DeadlineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01B2DC12C3D823700B981FC /* DeadlineViewModel.swift */; };
 		B08F10BB2C341B1C003B4009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10BA2C341B1C003B4009 /* AppDelegate.swift */; };
 		B08F10BD2C341B1C003B4009 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10BC2C341B1C003B4009 /* SceneDelegate.swift */; };
 		B08F10BF2C341B1C003B4009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F10BE2C341B1C003B4009 /* ViewController.swift */; };
@@ -62,6 +64,8 @@
 
 /* Begin PBXFileReference section */
 		B01B2DAF2C3C0A0F00B981FC /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		B01B2DBF2C3D80A100B981FC /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		B01B2DC12C3D823700B981FC /* DeadlineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineViewModel.swift; sourceTree = "<group>"; };
 		B08F10B72C341B1C003B4009 /* ReminderProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B08F10BA2C341B1C003B4009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B08F10BC2C341B1C003B4009 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				B08F10C32C341B1D003B4009 /* Assets.xcassets */,
 				B08F10C52C341B1D003B4009 /* LaunchScreen.storyboard */,
 				B08F10C82C341B1D003B4009 /* Info.plist */,
+				B01B2DBF2C3D80A100B981FC /* Observable.swift */,
 			);
 			path = ReminderProject;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 			children = (
 				B08F111D2C38279A003B4009 /* DeadlineView.swift */,
 				B08F111F2C383600003B4009 /* DeadlineViewController.swift */,
+				B01B2DC12C3D823700B981FC /* DeadlineViewModel.swift */,
 			);
 			path = Deadline;
 			sourceTree = "<group>";
@@ -362,8 +368,10 @@
 				B08F10DC2C3420DE003B4009 /* BaseTableViewCell.swift in Sources */,
 				B08F10BF2C341B1C003B4009 /* ViewController.swift in Sources */,
 				B08F10F62C35881A003B4009 /* BaseCollectionViewCell.swift in Sources */,
+				B01B2DC02C3D80A100B981FC /* Observable.swift in Sources */,
 				B08F11072C37C69E003B4009 /* ListViewController.swift in Sources */,
 				B08F11092C37C6E7003B4009 /* ListTableViewCell.swift in Sources */,
+				B01B2DC22C3D823700B981FC /* DeadlineViewModel.swift in Sources */,
 				B08F11052C37C249003B4009 /* ListView.swift in Sources */,
 				B08F10CF2C341B31003B4009 /* BaseViewController.swift in Sources */,
 				B08F10DA2C341E18003B4009 /* CreateViewController.swift in Sources */,
