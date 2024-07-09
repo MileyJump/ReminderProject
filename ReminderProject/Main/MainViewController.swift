@@ -29,6 +29,7 @@ final class MainViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         mainView.collectionView.reloadData()
+//        mainView.categoryCollectionView.reloadData()
     }
     
     override func configureView() {
@@ -87,13 +88,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let data = folderList[indexPath.row]
             categorycell.titleLabel.text = data.name
             categorycell.countLabel.text = "\(data.detail.count)"
-            collectionView.reloadData()
-            
             return categorycell
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+       print("sssssss")
         if collectionView.tag == 1  {
             print("되고 있느ㅁㅇㄹㅁ")
             let vc = ListViewController()

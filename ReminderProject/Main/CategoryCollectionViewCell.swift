@@ -19,9 +19,9 @@ final class CategoryCollectionViewCell: BaseCollectionViewCell {
     
     
     override func configureHierarchy() {
-        addSubview(iconImageView)
-        addSubview(titleLabel)
-        addSubview(countLabel)
+        contentView.addSubview(iconImageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(countLabel)
     }
     
     override func configureLayout() {

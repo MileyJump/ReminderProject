@@ -78,5 +78,7 @@ final class MainView: BaseView {
             make.bottom.equalTo(addTodoButton.snp.top)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
         }
-    }    
+        
+        categoryCollectionView.backgroundColor = .red
+    }
 }

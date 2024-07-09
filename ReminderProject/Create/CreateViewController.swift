@@ -30,6 +30,7 @@ final class CreateViewController: BaseViewController {
     // 왜 뷰디드로드가 실행이 안 될까요? ^^ 브레이크포인트도 안 되고,.. 프린트도 안 되고.... 왜...ㅠㅠ
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("dfdafdfadfasf")
 //        print(realm.configuration.fileURL)
         guard let folder = folder else { return }
         
